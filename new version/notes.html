@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notes | ApnaSEM</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar (same as dashboard) -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">A</div>
+      <span class="logo-text">ApnaSEM</span>
+    </div>
+    <nav class="menu">
+      <a href="index.html" class="menu-item">
+        <span class="menu-icon">🏠</span>Dashboard
+      </a>
+      <a href="courses.html" class="menu-item">
+        <span class="menu-icon">📚</span>My Courses
+      </a>
+      <a href="notes.html" class="menu-item active">
+        <span class="menu-icon">📝</span>Notes
+      </a>
+      <a href="assignments.html" class="menu-item">
+        <span class="menu-icon">📄</span>Assignments
+      </a>
+      <a href="saved.html" class="menu-item">
+        <span class="menu-icon">💾</span>Saved
+      </a>
+      <a href="exam.html" class="menu-item">
+        <span class="menu-icon">🧪</span>My Exams
+      </a>
+    </nav>
+    <div class="sidebar-help">
+      <p class="help-title">Need Help?</p>
+      <button class="btn-outline">Chat Support</button>
+    </div>
+    <div class="sidebar-premium">
+      <p class="premium-badge">Upgrade to <span>Premium</span></p>
+      <p class="premium-text">Get full access + offline download</p>
+      <button class="btn-primary full">Go Premium</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <nav class="topnav">
+        <a href="index.html" class="topnav-link">Home</a>
+        <a href="notes.html" class="topnav-link active">Notes</a>
+        <a href="subjects.html" class="topnav-link">Subjects</a>
+        <a href="downloads.html" class="topnav-link">Downloads</a>
+        <a href="exam.html" class="topnav-link">Exam</a>
+        <a href="community.html" class="topnav-link">Community</a>
+      </nav>
+      <div class="topbar-right">
+        <div class="search">
+          <input type="text" placeholder="🔍 Search notes..." id="notesSearch" onkeyup="filterNotes()">
+        </div>
+        <div class="user">
+          <div class="user-avatar">M</div>
+          <div class="user-info">
+            <p class="user-name">Mauli Chakor</p>
+            <p class="user-role">B.Tech CSE</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <section class="col-main full-width">
+        <!-- Notes Header -->
+        <div class="notes-header">
+          <div>
+            <h1>📝 All Notes</h1>
+            <p class="notes-stats">245 notes across 4 subjects • Updated 2 hours ago</p>
+          </div>
+          <div class="notes-controls">
+            <select id="subjectFilter" class="filter-select" onchange="filterNotes()">
+              <option value="all">All Subjects</option>
+              <option value="physics">Physics</option>
+              <option value="chemistry">Chemistry</option>
+              <option value="maths">Mathematics</option>
+              <option value="cs">Computer Science</option>
+            </select>
+            <select id="sortFilter" class="filter-select" onchange="filterNotes()">
+              <option value="latest">Latest First</option>
+              <option value="oldest">Oldest First</option>
+              <option value="title">A-Z</option>
+              <option value="size">File Size</option>
+            </select>
+            <button class="btn-primary" onclick="uploadNote()">+ Upload Note</button>
+          </div>
+        </div>
+
+        <!-- Notes Grid -->
+        <div class="notes-grid" id="notesGrid">
+          <!-- Physics Notes -->
+          <div class="note-card" data-subject="physics" data-title="mechanics">
+            <div class="note-header">
+              <div class="note-icon blue">P1</div>
+              <h3>Mechanics - Laws of Motion</h3>
+              <span class="note-badge new">New</span>
+            </div>
+            <p>Newton's Laws, Friction, Circular Motion</p>
+            <div class="note-footer">
+              <span class="note-author">Prof. Sharma</span>
+              <span class="note-date">2 hrs ago</span>
+              <div class="note-actions">
+                <button class="btn-primary small" onclick="viewNote('Mechanics')">View</button>
+                <button class="btn-outline small" onclick="downloadNote('Mechanics')">Download</button>
+                <button class="btn-icon" onclick="saveNote(this)">⭐</button>
+              </div>
+              <div class="note-size">1.2 MB</div>
+            </div>
+          </div>
+
+          <div class="note-card" data-subject="cs" data-title="datastructures">
+            <div class="note-header">
+              <div class="note-icon blue">DS</div>
+              <h3>Data Structures Ch-5</h3>
+              <span class="note-badge">Updated</span>
+            </div>
+            <p>Arrays, Linked Lists, Stacks, Queues</p>
+            <div class="note-footer">
+              <span class="note-author">Dr. Rajesh Kumar</span>
+              <span class="note-date">4 hrs ago</span>
+              <div class="note-actions">
+                <button class="btn-primary small" onclick="viewNote('Data Structures')">View</button>
+                <button class="btn-outline small" onclick="downloadNote('Data Structures')">Download</button>
+                <button class="btn-icon saved">⭐</button>
+              </div>
+              <div class="note-size">2.1 MB</div>
+            </div>
+          </div>
+
+          <div class="note-card" data-subject="chemistry" data-title="organic">
+            <div class="note-header">
+              <div class="note-icon green">OC</div>
+              <h3>Organic Chemistry - Reactions</h3>
+            </div>
+            <p>Reaction Mechanisms, SN1 SN2, Elimination</p>
+            <div class="note-footer">
+              <span class="note-author">Prof. Meena Singh</span>
+              <span class="note-date">Yesterday</span>
+              <div class="note-actions">
+                <button class="btn-primary small" onclick="viewNote('Organic Chemistry')">View</button>
+                <button class="btn-outline small" onclick="downloadNote('Organic Chemistry')">Download</button>
+                <button class="btn-icon" onclick="saveNote(this)">⭐</button>
+              </div>
+              <div class="note-size">1.8 MB</div>
+            </div>
+          </div>
+
+          <div class="note-card" data-subject="maths" data-title="calculus">
+            <div class="note-header">
+              <div class="note-icon orange">C1</div>
+              <h3>Calculus - Differentiation</h3>
+              <span class="note-badge popular">Popular</span>
+            </div>
+            <p>Limits, Derivatives, Applications</p>
+            <div class="note-footer">
+              <span class="note-author">Dr. Patel</span>
+              <span class="note-date">2 days ago</span>
+              <div class="note-actions">
+                <button class="btn-primary small" onclick="viewNote('Calculus')">View</button>
+                <button class="btn-outline small" onclick="downloadNote('Calculus')">Download</button>
+                <button class="btn-icon" onclick="saveNote(this)">⭐</button>
+              </div>
+              <div class="note-size">1.5 MB</div>
+            </div>
+          </div>
+
+          <div class="note-card" data-subject="cs" data-title="os">
+            <div class="note-header">
+              <div class="note-icon orange">OS</div>
+              <h3>Operating Systems - Unit 2</h3>
+            </div>
+            <p>Process Management, Scheduling</p>
+            <div class="note-footer">
+              <span class="note-author">Mr. Arjun Patel</span>
+              <span class="note-date">Apr 20</span>
+              <div class="note-actions">
+                <button class="btn-primary small" onclick="viewNote('Operating Systems')">View</button>
+                <button class="btn-outline small" onclick="downloadNote('Operating Systems')">Download</button>
+                <button class="btn-icon" onclick="saveNote(this)">⭐</button>
+              </div>
+              <div class="note-size">2.3 MB</div>
+            </div>
+          </div>
+
+          <div class="note-card" data-subject="physics" data-title="electrostatics">
+            <div class="note-header">
+              <div class="note-icon purple">E1</div>
+              <h3>Electrostatics</h3>
+            </div>
+            <p>Coulomb's Law, Electric Field</p>
+            <div class="note-footer">
+              <span class="note-author">Prof. Gupta</span>
+              <span class="note-date">3 days ago</span>
+              <div class="note-actions">
+                <button class="btn-primary small" onclick="viewNote('Electrostatics')">View</button>
+                <button class="btn-outline small" onclick="downloadNote('Electrostatics')">Download</button>
+                <button class="btn-icon" onclick="saveNote(this)">⭐</button>
+              </div>
+              <div class="note-size">1.9 MB</div>
+            </div>
+          </div>
+
+          <!-- Add 6+ more similar note cards -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <button class="btn-outline" onclick="prevPage()">← Previous</button>
+          <span id="pageInfo">1 of 12</span>
+          <button class="btn-outline" onclick="nextPage()">Next →</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+<script>
+setActiveNav('notes');
+</script>
+</body>
+</html>

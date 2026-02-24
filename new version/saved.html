@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Saved | ApnaSEM</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">A</div>
+      <span class="logo-text">ApnaSEM</span>
+    </div>
+    <nav class="menu">
+      <a href="index.html" class="menu-item"><span class="menu-icon">🏠</span>Dashboard</a>
+      <a href="courses.html" class="menu-item"><span class="menu-icon">📚</span>My Courses</a>
+      <a href="notes.html" class="menu-item"><span class="menu-icon">📝</span>Notes</a>
+      <a href="assignments.html" class="menu-item"><span class="menu-icon">📄</span>Assignments</a>
+      <a href="saved.html" class="menu-item active"><span class="menu-icon">💾</span>Saved</a>
+      <a href="exam.html" class="menu-item"><span class="menu-icon">🧪</span>My Exams</a>
+    </nav>
+    <div class="sidebar-help">
+      <p class="help-title">Need Help?</p>
+      <button class="btn-outline">Chat Support</button>
+    </div>
+    <div class="sidebar-premium">
+      <p class="premium-badge">Upgrade to <span>Premium</span></p>
+      <p class="premium-text">Unlimited saves + collections</p>
+      <button class="btn-primary full">Go Premium</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <nav class="topnav">
+        <a href="index.html" class="topnav-link">Home</a>
+        <a href="notes.html" class="topnav-link">Notes</a>
+        <a href="subjects.html" class="topnav-link">Subjects</a>
+        <a href="downloads.html" class="topnav-link">Downloads</a>
+        <a href="exam.html" class="topnav-link">Exam</a>
+        <a href="community.html" class="topnav-link">Community</a>
+      </nav>
+      <div class="topbar-right">
+        <div class="search">
+          <input type="text" placeholder="🔍 Search saved items..." id="savedSearch" onkeyup="filterSaved()">
+        </div>
+        <div class="user">
+          <div class="user-avatar">M</div>
+          <div class="user-info">
+            <p class="user-name">Mauli Chakor</p>
+            <p class="user-role">127 Saved Items</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <section class="col-main full-width">
+        <!-- Saved Header -->
+        <div class="saved-header">
+          <div>
+            <h1>💾 Saved Items</h1>
+            <p class="saved-stats">127 items • 2.8 GB • Last saved 2 hours ago</p>
+          </div>
+          <div class="saved-controls">
+            <div class="save-tabs">
+              <button class="tab active" onclick="switchSavedTab('all')">All</button>
+              <button class="tab" onclick="switchSavedTab('notes')">Notes</button>
+              <button class="tab" onclick="switchSavedTab('assignments')">Assignments</button>
+              <button class="tab" onclick="switchSavedTab('posts')">Posts</button>
+            </div>
+            <div class="bulk-controls">
+              <button class="btn-icon" onclick="selectAll()">✓ All</button>
+              <button class="btn-primary" id="bulkActionBtn" style="display: none;">Move to Collection</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Saved Stats -->
+        <div class="saved-stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">📄</div>
+            <h3>67</h3>
+            <p>Notes</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📋</div>
+            <h3>18</h3>
+            <p>Assignments</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">💬</div>
+            <h3>42</h3>
+            <p>Posts</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⭐</div>
+            <h3>12</h3>
+            <p>Collections</p>
+          </div>
+        </div>
+
+        <!-- Saved Items Grid -->
+        <div class="saved-grid" id="savedGrid">
+          <!-- Saved Physics Note -->
+          <div class="saved-card note physics selected" data-type="notes" data-subject="physics" data-name="physics-mechanics">
+            <div class="saved-checkbox">
+              <input type="checkbox" checked onchange="toggleSelect(this)">
+            </div>
+            <div class="saved-icon physics">P1</div>
+            <div class="saved-content">
+              <h4>Mechanics - Laws of Motion</h4>
+              <p class="saved-meta">Physics • Prof. Sharma • Saved 2 hrs ago</p>
+              <div class="saved-actions">
+                <button class="btn-primary small" onclick="openSavedNote('Mechanics')">Open</button>
+                <button class="btn-icon" onclick="removeSaved(this)">×</button>
+              </div>
+            </div>
+            <div class="saved-size">1.2 MB</div>
+          </div>
+
+          <!-- Saved DS Assignment -->
+          <div class="saved-card assignment cs" data-type="assignments" data-subject="cs" data-name="ds-array">
+            <div class="saved-checkbox">
+              <input type="checkbox" onchange="toggleSelect(this)">
+            </div>
+            <div class="saved-icon cs">DS</div>
+            <div class="saved-content">
+              <h4>DS - Array Implementation</h4>
+              <p class="saved-meta">Computer Science • Submitted • Saved 4 hrs ago</p>
+              <div class="saved-actions">
+                <button class="btn-outline small" onclick="openSavedAssignment('DS Array')">View</button>
+                <button class="btn-icon" onclick="removeSaved(this)">×</button>
+              </div>
+            </div>
+            <div class="saved-priority high">⭐ High</div>
+          </div>
+
+          <!-- Saved Community Post -->
+          <div class="saved-card post" data-type="posts" data-name="physics-help">
+            <div class="saved-checkbox">
+              <input type="checkbox" onchange="toggleSelect(this)">
+            </div>
+            <div class="saved-icon post">💬</div>
+            <div class="saved-content">
+              <h4>URGENT: Physics Ch-5 Notes?</h4>
+              <p class="saved-meta">Rajesh S. • 24 likes • Saved 1 day ago</p>
+              <div class="saved-actions">
+                <button class="btn-primary small" onclick="openSavedPost('Physics Help')">View Post</button>
+                <button class="btn-icon" onclick="removeSaved(this)">×</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Saved Maths Note -->
+          <div class="saved-card note maths" data-type="notes" data-subject="maths" data-name="calculus">
+            <div class="saved-checkbox">
+              <input type="checkbox" onchange="toggleSelect(this)">
+            </div>
+            <div class="saved-icon maths">C1</div>
+            <div class="saved-content">
+              <h4>Calculus - Differentiation</h4>
+              <p class="saved-meta">Mathematics • Popular • Saved 3 days ago</p>
+              <div class="saved-actions">
+                <button class="btn-primary small" onclick="openSavedNote('Calculus')">Open</button>
+                <button class="btn-icon" onclick="removeSaved(this)">×</button>
+              </div>
+            </div>
+            <div class="saved-size">2.4 MB</div>
+          </div>
+
+          <!-- Saved Collection -->
+          <div class="saved-card collection" data-type="collections" data-name="sem4-prep">
+            <div class="saved-checkbox">
+              <input type="checkbox" onchange="toggleSelect(this)">
+            </div>
+            <div class="saved-icon collection">📁</div>
+            <div class="saved-content">
+              <h4>Sem 4 Exam Prep</h4>
+              <p class="saved-meta">Collection • 18 items • Created Feb 20</p>
+              <div class="saved-actions">
+                <button class="btn-primary small" onclick="openCollection('Sem 4 Prep')">Open Collection</button>
+                <button class="btn-icon" onclick="removeSaved(this)">×</button>
+              </div>
+            </div>
+            <div class="saved-count">18 items</div>
+          </div>
+        </div>
+
+        <!-- Collections Section -->
+        <div class="collections-section">
+          <h2>📁 My Collections</h2>
+          <div class="collections-grid">
+            <div class="collection-card" onclick="createCollection()">
+              <div class="collection-add">
+                <span class="plus-icon">+</span>
+                <h3>New Collection</h3>
+              </div>
+            </div>
+            <div class="collection-card active" onclick="openCollection('Sem 4 Prep')">
+              <div class="collection-color blue"></div>
+              <h3>Sem 4 Prep</h3>
+              <p>18 items</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+<script>setActiveNav('saved');</script>
+</body>
+</html>

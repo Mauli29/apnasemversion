@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Courses | ApnaSEM</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">A</div>
+      <span class="logo-text">ApnaSEM</span>
+    </div>
+    <nav class="menu">
+      <a href="index.html" class="menu-item"><span class="menu-icon">🏠</span>Dashboard</a>
+      <a href="courses.html" class="menu-item active"><span class="menu-icon">📚</span>My Courses</a>
+      <a href="notes.html" class="menu-item"><span class="menu-icon">📝</span>Notes</a>
+      <a href="assignments.html" class="menu-item"><span class="menu-icon">📄</span>Assignments</a>
+      <a href="saved.html" class="menu-item"><span class="menu-icon">💾</span>Saved</a>
+      <a href="exam.html" class="menu-item"><span class="menu-icon">🧪</span>My Exams</a>
+    </nav>
+    <div class="sidebar-help">
+      <p class="help-title">Need Help?</p>
+      <button class="btn-outline">Chat Support</button>
+    </div>
+    <div class="sidebar-premium">
+      <p class="premium-badge">Upgrade to <span>Premium</span></p>
+      <p class="premium-text">Unlimited courses + live classes</p>
+      <button class="btn-primary full">Go Premium</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <nav class="topnav">
+        <a href="index.html" class="topnav-link">Home</a>
+        <a href="notes.html" class="topnav-link">Notes</a>
+        <a href="subjects.html" class="topnav-link">Subjects</a>
+        <a href="downloads.html" class="topnav-link">Downloads</a>
+        <a href="exam.html" class="topnav-link">Exam</a>
+        <a href="community.html" class="topnav-link">Community</a>
+      </nav>
+      <div class="topbar-right">
+        <div class="search">
+          <input type="text" placeholder="🔍 Search courses..." id="courseSearch" onkeyup="filterCourses()">
+        </div>
+        <div class="user">
+          <div class="user-avatar">M</div>
+          <div class="user-info">
+            <p class="user-name">Mauli Chakor</p>
+            <p class="user-role">8 Active Courses</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <!-- Main Content -->
+      <section class="col-main full-width">
+        <!-- Courses Header -->
+        <div class="courses-header">
+          <div>
+            <h1>📚 My Courses</h1>
+            <p class="courses-stats">8 active courses | 245 total modules | 72% avg completion</p>
+          </div>
+          <div class="courses-controls">
+            <select id="degreeFilter" class="filter-select" onchange="filterCourses()">
+              <option value="all">All Degrees</option>
+              <option value="btech">B.Tech</option>
+              <option value="bca">BCA</option>
+              <option value="mca">MCA</option>
+              <option value="mcs">MCS</option>
+              <option value="bsc">BSc Data Science</option>
+            </select>
+            <select id="statusFilter" class="filter-select" onchange="filterCourses()">
+              <option value="all">All Status</option>
+              <option value="active">Active</option>
+              <option value="completed">Completed</option>
+              <option value="upcoming">Upcoming</option>
+            </select>
+            <button class="btn-primary" onclick="enrollNewCourse()">+ Enroll New Course</button>
+          </div>
+        </div>
+
+        <!-- Courses Stats -->
+        <div class="courses-stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">🎓</div>
+            <h3>8</h3>
+            <p>Active Courses</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📖</div>
+            <h3>245</h3>
+            <p>Total Modules</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⏱️</div>
+            <h3>72%</h3>
+            <p>Avg Completion</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⭐</div>
+            <h3>4.7</h3>
+            <p>Avg Rating</p>
+          </div>
+        </div>
+
+        <!-- Courses Grid -->
+        <div class="courses-grid" id="coursesGrid">
+          <!-- B.Tech CSE Sem-4 -->
+          <div class="course-card btech active" data-degree="btech" data-status="active" data-name="btech-cse-sem4">
+            <div class="course-header">
+              <div class="course-icon btech">💻</div>
+              <h2>B.Tech CSE - Sem 4</h2>
+              <span class="course-badge active">Active</span>
+            </div>
+            <div class="course-stats">
+              <div class="stat-item">
+                <span class="stat-label">Modules</span>
+                <span class="stat-value">28/35</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Progress</span>
+                <span class="stat-value">72%</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Duration</span>
+                <span class="stat-value">4 months</span>
+              </div>
+            </div>
+            <div class="course-progress">
+              <div class="progress-bar">
+                <div class="progress-fill btech-fill" style="width:72%"></div>
+              </div>
+            </div>
+            <div class="course-actions">
+              <button class="btn-primary" onclick="openCourse('B.Tech CSE Sem 4')">Continue Course</button>
+              <button class="btn-outline" onclick="viewCertificates('B.Tech CSE')">Certificates</button>
+              <button class="btn-icon saved">⭐</button>
+            </div>
+          </div>
+
+          <!-- BCA Sem-3 -->
+          <div class="course-card bca active" data-degree="bca" data-status="active" data-name="bca-sem3">
+            <div class="course-header">
+              <div class="course-icon bca">🖥️</div>
+              <h2>BCA Sem 3</h2>
+              <span class="course-badge popular">Popular</span>
+            </div>
+            <div class="course-stats">
+              <div class="stat-item">
+                <span class="stat-label">Modules</span>
+                <span class="stat-value">15/24</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Progress</span>
+                <span class="stat-value">58%</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Duration</span>
+                <span class="stat-value">3 months</span>
+              </div>
+            </div>
+            <div class="course-progress">
+              <div class="progress-bar">
+                <div class="progress-fill bca-fill" style="width:58%"></div>
+              </div>
+            </div>
+            <div class="course-actions">
+              <button class="btn-primary" onclick="openCourse('BCA Sem 3')">Continue</button>
+              <button class="btn-outline" onclick="courseDetails('BCA')">Details</button>
+            </div>
+          </div>
+
+          <!-- MCA Sem-2 -->
+          <div class="course-card mca upcoming" data-degree="mca" data-status="upcoming" data-name="mca-sem2">
+            <div class="course-header">
+              <div class="course-icon mca">🎓</div>
+              <h2>MCA Sem 2</h2>
+              <span class="course-badge upcoming">Starts Mar 1</span>
+            </div>
+            <div class="course-stats">
+              <div class="stat-item">
+                <span class="stat-label">Modules</span>
+                <span class="stat-value">0/30</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Duration</span>
+                <span class="stat-value">5 months</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Seats</span>
+                <span class="stat-value">12/25</span>
+              </div>
+            </div>
+            <div class="course-actions">
+              <button class="btn-primary" onclick="enrollCourse('MCA Sem 2')">Enroll Now</button>
+              <button class="btn-outline" onclick="previewCourse('MCA')">Preview</button>
+            </div>
+          </div>
+
+          <!-- MCS (Masters in Computer Science) -->
+          <div class="course-card mcs completed" data-degree="mcs" data-status="completed" data-name="mcs">
+            <div class="course-header">
+              <div class="course-icon mcs">🔬</div>
+              <h2>MCS Complete</h2>
+              <span class="course-badge completed">✅ Completed</span>
+            </div>
+            <div class="course-stats">
+              <div class="stat-item">
+                <span class="stat-label">Final Score</span>
+                <span class="stat-value">94%</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Certificate</span>
+                <span class="stat-value">Issued</span>
+              </div>
+            </div>
+            <div class="course-actions">
+              <button class="btn-outline" onclick="downloadCertificate('MCS')">Download Certificate</button>
+              <button class="btn-primary" onclick="reviewCourse('MCS')">Review Course</button>
+            </div>
+          </div>
+
+          <!-- BSc Data Science Sem-2 -->
+          <div class="course-card bsc active" data-degree="bsc" data-status="active" data-name="bsc-data-science">
+            <div class="course-header">
+              <div class="course-icon bsc">📊</div>
+              <h2>BSc Data Science Sem 2</h2>
+              <span class="course-badge new">New</span>
+            </div>
+            <div class="course-stats">
+              <div class="stat-item">
+                <span class="stat-label">Modules</span>
+                <span class="stat-value">8/22</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Progress</span>
+                <span class="stat-value">36%</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Live Classes</span>
+                <span class="stat-value">Weekly</span>
+              </div>
+            </div>
+            <div class="course-progress">
+              <div class="progress-bar">
+                <div class="progress-fill bsc-fill" style="width:36%"></div>
+              </div>
+            </div>
+            <div class="course-actions">
+              <button class="btn-primary" onclick="openCourse('BSc Data Science')">Join Live Class</button>
+            </div>
+          </div>
+
+          <!-- B.Tech AI/ML -->
+          <div class="course-card btech active" data-degree="btech" data-status="active" data-name="btech-ai">
+            <div class="course-header">
+              <div class="course-icon btech">🤖</div>
+              <h2>B.Tech AI/ML</h2>
+            </div>
+            <div class="course-stats">
+              <div class="stat-item">
+                <span class="stat-label">Modules</span>
+                <span class="stat-value">12/40</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Progress</span>
+                <span class="stat-value">30%</span>
+              </div>
+            </div>
+            <div class="course-progress">
+              <div class="progress-bar">
+                <div class="progress-fill ai-fill" style="width:30%"></div>
+              </div>
+            </div>
+            <div class="course-actions">
+              <button class="btn-primary" onclick="openCourse('B.Tech AI/ML')">Continue</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Sidebar - Quick Actions -->
+      <section class="col-side">
+        <div class="card">
+          <h3>Quick Actions</h3>
+          <div class="quick-actions-list">
+            <button class="quick-action" onclick="joinLiveClass()">
+              <span class="quick-icon">📺</span>
+              Join Live Class
+            </button>
+            <button class="quick-action" onclick="viewSchedule()">
+              <span class="quick-icon">📅</span>
+              Class Schedule
+            </button>
+            <button class="quick-action" onclick="assignmentDashboard()">
+              <span class="quick-icon">📋</span>
+              Assignments
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+<script>
+setActiveNav('courses');
+</script>
+</body>
+</html>

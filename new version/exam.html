@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Exams | ApnaSEM</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">A</div>
+      <span class="logo-text">ApnaSEM</span>
+    </div>
+    <nav class="menu">
+      <a href="index.html" class="menu-item"><span class="menu-icon">🏠</span>Dashboard</a>
+      <a href="courses.html" class="menu-item"><span class="menu-icon">📚</span>My Courses</a>
+      <a href="notes.html" class="menu-item"><span class="menu-icon">📝</span>Notes</a>
+      <a href="assignments.html" class="menu-item"><span class="menu-icon">📄</span>Assignments</a>
+      <a href="saved.html" class="menu-item"><span class="menu-icon">💾</span>Saved</a>
+      <a href="exam.html" class="menu-item active"><span class="menu-icon">🧪</span>My Exams</a>
+    </nav>
+    <div class="sidebar-help">
+      <p class="help-title">Need Help?</p>
+      <button class="btn-outline">Chat Support</button>
+    </div>
+    <div class="sidebar-premium">
+      <p class="premium-badge">Upgrade to <span>Premium</span></p>
+      <p class="premium-text">Unlimited mock tests + analytics</p>
+      <button class="btn-primary full">Go Premium</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <nav class="topnav">
+        <a href="index.html" class="topnav-link">Home</a>
+        <a href="notes.html" class="topnav-link">Notes</a>
+        <a href="subjects.html" class="topnav-link">Subjects</a>
+        <a href="downloads.html" class="topnav-link">Downloads</a>
+        <a href="exam.html" class="topnav-link">Exam</a>
+        <a href="community.html" class="topnav-link">Community</a>
+      </nav>
+      <div class="topbar-right">
+        <div class="search">
+          <input type="text" placeholder="🔍 Search exams..." id="examSearch" onkeyup="filterExams()">
+        </div>
+        <div class="user">
+          <div class="user-avatar">M</div>
+          <div class="user-info">
+            <p class="user-name">Mauli Chakor</p>
+            <p class="user-role">15 Exams | 87% Avg Score</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <section class="col-main full-width">
+        <!-- Exams Header -->
+        <div class="exams-header">
+          <div>
+            <h1>🧪 My Exams</h1>
+            <p class="exams-stats">15 total exams • 8 upcoming • 87% average score</p>
+          </div>
+          <div class="exams-controls">
+            <select id="examTypeFilter" class="filter-select" onchange="filterExams()">
+              <option value="all">All Exams</option>
+              <option value="practice">Practice</option>
+              <option value="mock">Mock Test</option>
+              <option value="midterm">Mid-Term</option>
+              <option value="final">Final</option>
+            </select>
+            <select id="subjectFilter" class="filter-select" onchange="filterExams()">
+              <option value="all">All Subjects</option>
+              <option value="physics">Physics</option>
+              <option value="chemistry">Chemistry</option>
+              <option value="maths">Maths</option>
+              <option value="cs">CS</option>
+            </select>
+            <button class="btn-primary" onclick="startQuickTest()">🚀 Quick Test</button>
+          </div>
+        </div>
+
+        <!-- Exam Stats Overview -->
+        <div class="exam-stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">📅</div>
+            <h3>8</h3>
+            <p>Upcoming</p>
+          </div>
+          <div class="stat-card excellent">
+            <div class="stat-icon">📊</div>
+            <h3>87%</h3>
+            <p>Avg Score</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">✅</div>
+            <h3>12</h3>
+            <p>Completed</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📈</div>
+            <h3>+15%</h3>
+            <p>Improvement</p>
+          </div>
+        </div>
+
+        <!-- Upcoming Exams -->
+        <div class="exams-section">
+          <h2>📅 Upcoming Tests</h2>
+          <div class="exams-grid" id="upcomingExams">
+            <!-- Physics Mock Test -->
+            <div class="exam-card practice physics" data-type="practice" data-subject="physics">
+              <div class="exam-icon physics">🧲</div>
+              <div class="exam-header">
+                <h3>Physics Mock Test - Mechanics</h3>
+                <span class="exam-badge practice">Practice</span>
+              </div>
+              <div class="exam-details">
+                <div class="detail-row">
+                  <span>Duration:</span>
+                  <span class="detail-value">45 min</span>
+                </div>
+                <div class="detail-row">
+                  <span>Questions:</span>
+                  <span class="detail-value">30 MCQ</span>
+                </div>
+                <div class="exam-timer">Ready to Start</div>
+              </div>
+              <div class="exam-actions">
+                <button class="btn-primary large" onclick="startExam('Physics Mock')">
+                  <span class="start-icon">▶️</span> Start Now
+                </button>
+                <button class="btn-outline" onclick="previewExam('Physics')">Preview</button>
+              </div>
+            </div>
+
+            <!-- CS Mid-Term Practice -->
+            <div class="exam-card mock cs urgent" data-type="mock" data-subject="cs">
+              <div class="exam-icon cs">💻</div>
+              <div class="exam-header">
+                <h3>DS & Algorithms - Mock Test</h3>
+                <span class="exam-badge mock urgent">High Priority</span>
+              </div>
+              <div class="exam-details">
+                <div class="detail-row">
+                  <span>Duration:</span>
+                  <span class="detail-value">90 min</span>
+                </div>
+                <div class="detail-row">
+                  <span>Questions:</span>
+                  <span class="detail-value">50 Mixed</span>
+                </div>
+                <div class="exam-timer countdown">Starts in 2h 15m</div>
+              </div>
+              <div class="exam-actions">
+                <button class="btn-primary large urgent" onclick="startExam('DS Mock')">
+                  Prepare Now
+                </button>
+              </div>
+            </div>
+
+            <!-- Mathematics Final Prep -->
+            <div class="exam-card midterm maths" data-type="midterm" data-subject="maths">
+              <div class="exam-icon maths">📐</div>
+              <div class="exam-header">
+                <h3>Calculus Final - Practice</h3>
+                <span class="exam-badge midterm">Mid-Term Prep</span>
+              </div>
+              <div class="exam-details">
+                <div class="detail-row">
+                  <span>Chapters:</span>
+                  <span class="detail-value">1-12</span>
+                </div>
+                <div class="detail-row">
+                  <span>Difficulty:</span>
+                  <span class="detail-value">Advanced</span>
+                </div>
+              </div>
+              <div class="exam-actions">
+                <button class="btn-primary large" onclick="startExam('Calculus Final')">Start Practice</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Performance -->
+        <div class="performance-section">
+          <h2>📊 Recent Results</h2>
+          <div class="performance-grid">
+            <div class="performance-card excellent">
+              <div class="score-circle excellent">
+                <span>94%</span>
+              </div>
+              <h4>Physics Quiz</h4>
+              <p>27/30 • Feb 22</p>
+              <span class="perf-trend positive">+8%</span>
+            </div>
+            <div class="performance-card good">
+              <div class="score-circle good">
+                <span>82%</span>
+              </div>
+              <h4>DS Practice</h4>
+              <p>41/50 • Feb 20</p>
+              <span class="perf-trend neutral">Stable</span>
+            </div>
+            <div class="performance-card warning">
+              <div class="score-circle warning">
+                <span>71%</span>
+              </div>
+              <h4>Chemistry Test</h4>
+              <p>Feb 18 • Needs Practice</p>
+              <span class="perf-trend negative">-5%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Practice Section -->
+        <div class="quick-practice">
+          <h2>⚡ Quick Practice</h2>
+          <div class="quick-grid">
+            <div class="quick-card" onclick="startQuickTest('Physics')">
+              <div class="quick-icon physics">🧲</div>
+              <h4>10 Q Physics</h4>
+              <span>5 min</span>
+            </div>
+            <div class="quick-card" onclick="startQuickTest('Maths')">
+              <div class="quick-icon maths">📐</div>
+              <h4>15 Q Maths</h4>
+              <span>8 min</span>
+            </div>
+            <div class="quick-card" onclick="startQuickTest('CS')">
+              <div class="quick-icon cs">💻</div>
+              <h4>20 Q CS</h4>
+              <span>12 min</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Sidebar - Exam Tools -->
+      <section class="col-side">
+        <div class="card">
+          <h3>🛠️ Exam Tools</h3>
+          <div class="tools-list">
+            <button class="tool-btn" onclick="calculator()">
+              <span class="tool-icon">🧮</span> Calculator
+            </button>
+            <button class="tool-btn" onclick="formulaSheet()">
+              <span class="tool-icon">📋</span> Formula Sheet
+            </button>
+            <button class="tool-btn" onclick="previousPapers()">
+              <span class="tool-icon">📜</span> Past Papers
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+<script>setActiveNav('exams');</script>
+</body>
+</html>
