@@ -16,15 +16,22 @@ body {
   min-height: 100vh;
 }
 
-/* Sidebar */
+/* =====================
+   SIDEBAR
+   ===================== */
 .sidebar {
-  width: 260px;
+  width: 300px;
   background: #ffffff;
   border-right: 1px solid #e2e4f0;
   padding: 20px 18px;
   display: flex;
   flex-direction: column;
   gap: 18px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  flex-shrink: 0;
 }
 
 .logo {
@@ -44,6 +51,7 @@ body {
   align-items: center;
   justify-content: center;
   font-weight: 700;
+  flex-shrink: 0;
 }
 
 .logo-text {
@@ -83,6 +91,7 @@ body {
 .menu-icon {
   width: 22px;
   text-align: center;
+  flex-shrink: 0;
 }
 
 .sidebar-help {
@@ -121,14 +130,19 @@ body {
   font-size: 12px;
 }
 
-/* Main */
+/* =====================
+   MAIN
+   ===================== */
 .main {
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-width: 0; /* prevent overflow */
 }
 
-/* Topbar */
+/* =====================
+   TOPBAR
+   ===================== */
 .topbar {
   height: 72px;
   background: #ffffff;
@@ -137,12 +151,23 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  gap: 12px;
 }
 
 .topnav {
   display: flex;
   gap: 18px;
   flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.topnav::-webkit-scrollbar {
+  display: none;
 }
 
 .topnav-link {
@@ -169,6 +194,7 @@ body {
   display: flex;
   align-items: center;
   gap: 16px;
+  flex-shrink: 0;
 }
 
 .search input {
@@ -177,6 +203,13 @@ body {
   padding: 8px 14px;
   font-size: 14px;
   width: 260px;
+  transition: width 0.3s;
+}
+
+.search input:focus {
+  outline: none;
+  border-color: #2563eb;
+  width: 300px;
 }
 
 .user {
@@ -195,6 +228,7 @@ body {
   align-items: center;
   justify-content: center;
   font-weight: 600;
+  flex-shrink: 0;
 }
 
 .user-info {
@@ -211,7 +245,9 @@ body {
   color: #6b7280;
 }
 
-/* Content layout */
+/* =====================
+   CONTENT LAYOUT
+   ===================== */
 .content {
   padding: 20px 24px 24px;
   display: grid;
@@ -226,7 +262,9 @@ body {
   gap: 16px;
 }
 
-/* Cards */
+/* =====================
+   CARDS
+   ===================== */
 .card {
   background: #ffffff;
   border-radius: 18px;
@@ -245,6 +283,7 @@ body {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
+  gap: 8px;
 }
 
 .card-header h2 {
@@ -252,7 +291,9 @@ body {
   font-size: 16px;
 }
 
-/* Welcome card */
+/* =====================
+   WELCOME CARD
+   ===================== */
 .welcome-card {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
@@ -308,7 +349,9 @@ body {
   font-size: 13px;
 }
 
-/* Quick access */
+/* =====================
+   QUICK ACCESS
+   ===================== */
 .quick-access {
   padding-top: 12px;
 }
@@ -376,7 +419,9 @@ body {
   color: #e5e7eb;
 }
 
-/* Latest notes */
+/* =====================
+   LATEST NOTES
+   ===================== */
 .note-row {
   margin-top: 10px;
   padding-top: 8px;
@@ -397,6 +442,8 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex: 1;
+  min-width: 0;
 }
 
 .note-icon {
@@ -409,16 +456,21 @@ body {
   color: #ffffff;
   font-size: 13px;
   font-weight: 600;
+  flex-shrink: 0;
 }
 
 .note-icon.blue { background: #2563eb; }
 .note-icon.green { background: #16a34a; }
 .note-icon.orange { background: #f97316; }
+.note-icon.purple { background: #8b5cf6; }
 
 .note-title {
   margin: 0 0 2px;
   font-size: 14px;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .note-meta {
@@ -427,7 +479,9 @@ body {
   color: #6b7280;
 }
 
-/* Announcements */
+/* =====================
+   ANNOUNCEMENTS
+   ===================== */
 .ann-item {
   margin-top: 8px;
   padding: 12px;
@@ -438,6 +492,7 @@ body {
   justify-content: space-between;
   cursor: pointer;
   transition: background 0.2s;
+  gap: 8px;
 }
 
 .ann-item:hover {
@@ -458,14 +513,18 @@ body {
 
 .ann-arrow {
   font-size: 18px;
+  flex-shrink: 0;
 }
 
-/* Progress */
+/* =====================
+   PROGRESS
+   ===================== */
 .progress-main {
   margin-top: 8px;
   display: flex;
   gap: 14px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .circle {
@@ -480,6 +539,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .circle span {
@@ -498,6 +558,7 @@ body {
   flex-direction: column;
   gap: 8px;
   font-size: 13px;
+  min-width: 0;
 }
 
 .prog-row {
@@ -528,7 +589,9 @@ body {
   text-align: right;
 }
 
-/* Buttons */
+/* =====================
+   BUTTONS
+   ===================== */
 .btn-primary {
   border-radius: 999px;
   border: none;
@@ -539,6 +602,7 @@ body {
   color: #ffffff;
   cursor: pointer;
   transition: all 0.2s;
+  white-space: nowrap;
 }
 
 .btn-primary:hover {
@@ -549,6 +613,12 @@ body {
   width: 100%;
 }
 
+.btn-primary.large {
+  padding: 14px 28px;
+  font-size: 16px;
+  flex: 1;
+}
+
 .btn-outline {
   border-radius: 999px;
   border: 1px solid #2563eb;
@@ -557,11 +627,17 @@ body {
   padding: 7px 14px;
   font-size: 13px;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .btn-outline.small {
   padding: 6px 12px;
   font-size: 12px;
+}
+
+.btn-outline.large {
+  padding: 12px 32px;
+  font-size: 16px;
 }
 
 .link-btn {
@@ -577,105 +653,85 @@ body {
   font-size: 12px;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .sidebar {
-    display: none;
-  }
-  .content {
-    grid-template-columns: 1fr;
-  }
-  .welcome-card {
-    grid-template-columns: 1fr;
-  }
-  .topbar {
-    padding: 0 16px;
-    height: auto;
-    min-height: 72px;
-  }
-  .topnav {
-    gap: 12px;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
-  .topnav-link {
-    font-size: 13px;
-    padding: 6px 12px;
-    border-radius: 6px;
-  }
-  .topnav-link.active {
-    border-bottom: none;
-    background: #eff6ff;
-  }
-  .search input {
-    width: 200px;
-  }
+.btn-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
 }
 
-@media (max-width: 640px) {
-  .topbar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-    padding: 12px 16px;
-  }
-  .topnav {
-    order: 2;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .topbar-right {
-    order: 1;
-    width: 100%;
-    display: flex;
-    gap: 12px;
-  }
-  .search {
-    flex: 1;
-  }
-  .search input {
-    width: 100%;
-  }
-  .topnav-link {
-    font-size: 12px;
-    padding: 4px 8px;
-  }
+.btn-icon.saved {
+  background: #fef3c7;
+  color: #f59e0b;
+  border-color: #f59e0b;
 }
-/* Extra for new pages */
+
+.btn-icon.danger {
+  background: #fee2e2;
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+/* =====================
+   EXTRA / SHARED
+   ===================== */
 .full-width { grid-column: 1 / -1; }
-.notes-grid, .subjects-grid { 
-  display: grid; 
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-  gap: 16px; 
-  margin: 20px 0; 
+
+.notes-grid, .subjects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
 }
-.note-card, .subject-card { 
-  padding: 20px; 
-  border-radius: 16px; 
-  background: white; 
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
+
+.note-card, .subject-card {
+  padding: 20px;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
+
 .subject-icon { font-size: 48px; margin-bottom: 12px; }
-.progress-bar { 
-  height: 8px; 
-  background: #e5e7eb; 
-  border-radius: 4px; 
-  margin: 12px 0; 
-  overflow: hidden; 
+
+.progress-bar {
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  margin: 12px 0;
+  overflow: hidden;
 }
-.progress-fill { 
-  height: 100%; 
-  background: linear-gradient(90deg, #2563eb, #22c55e); 
-  border-radius: 4px; 
+
+.progress-bar.small {
+  flex: 1;
+  height: 6px;
+  margin: 0;
 }
-.filter-select { 
-  padding: 8px 12px; 
-  border: 1px solid #d1d5db; 
-  border-radius: 8px; 
-  background: white; 
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2563eb, #22c55e);
+  border-radius: 4px;
+  transition: width 0.5s ease;
 }
-/* Notes Page Specific */
+
+.filter-select {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  font-size: 14px;
+}
+
+/* =====================
+   NOTES PAGE
+   ===================== */
 .notes-header {
   display: flex;
   justify-content: space-between;
@@ -725,6 +781,7 @@ body {
   align-items: center;
   gap: 12px;
   margin-bottom: 12px;
+  flex-wrap: wrap;
 }
 
 .note-badge {
@@ -734,6 +791,7 @@ body {
   border-radius: 12px;
   font-size: 11px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .note-badge.new { background: #3b82f6; }
@@ -747,6 +805,8 @@ body {
   margin-top: 16px;
   padding-top: 16px;
   border-top: 1px solid #f1f5f9;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .note-author {
@@ -770,54 +830,18 @@ body {
   color: #6b7280;
 }
 
-.btn-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  border: 1px solid #d1d5db;
-  background: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-}
-
-.btn-icon.saved {
-  background: #fef3c7;
-  color: #f59e0b;
-  border-color: #f59e0b;
-}
-
-.note-icon.purple {
-  background: #8b5cf6;
-}
-
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 16px;
   margin: 40px 0;
+  flex-wrap: wrap;
 }
 
-.full-width {
-  grid-column: 1 / -1;
-}
-
-@media (max-width: 768px) {
-  .notes-grid {
-    grid-template-columns: 1fr;
-  }
-  .notes-controls {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .btn-primary {
-    width: 100%;
-  }
-}
-/* Subjects Page Specific */
+/* =====================
+   SUBJECTS PAGE
+   ===================== */
 .subjects-header {
   display: flex;
   justify-content: space-between;
@@ -873,16 +897,12 @@ body {
   box-shadow: 0 24px 64px rgba(0,0,0,0.15);
 }
 
-.subject-icon {
-  font-size: 56px;
-  margin-bottom: 16px;
-}
-
 .subject-header {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .subject-header h2 {
@@ -896,6 +916,7 @@ body {
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .subject-badge.active { background: #dcfce7; color: #166534; }
@@ -907,6 +928,7 @@ body {
   display: flex;
   gap: 24px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .stat-item {
@@ -931,29 +953,22 @@ body {
   margin-bottom: 24px;
 }
 
-.progress-bar {
-  height: 10px;
-  background: #e5e7eb;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  border-radius: 5px;
-  transition: width 0.5s ease;
-}
-
 .progress-fill.physics-fill { background: linear-gradient(90deg, #3b82f6, #1d4ed8); }
 .progress-fill.chemistry-fill { background: linear-gradient(90deg, #10b981, #059669); }
 .progress-fill.maths-fill { background: linear-gradient(90deg, #f59e0b, #d97706); }
 .progress-fill.cs-fill { background: linear-gradient(90deg, #8b5cf6, #7c3aed); }
 .progress-fill.completed-fill { background: linear-gradient(90deg, #10b981, #059669); }
+.progress-fill.urgent-fill { background: #dc2626; }
+.progress-fill.btech-fill { background: linear-gradient(90deg, #3b82f6, #1d4ed8); }
+.progress-fill.bca-fill { background: linear-gradient(90deg, #10b981, #059669); }
+.progress-fill.bsc-fill { background: linear-gradient(90deg, #ec4899, #db2777); }
+.progress-fill.ai-fill { background: linear-gradient(90deg, #06b6d4, #0891b2); }
 
 .subject-actions {
   display: flex;
   gap: 12px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .stats-overview {
@@ -969,6 +984,8 @@ body {
   padding: 24px;
   border-radius: 20px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .stat-card h3 {
@@ -983,12 +1000,37 @@ body {
   opacity: 0.9;
 }
 
-@media (max-width: 768px) {
-  .subjects-grid {
-    grid-template-columns: 1fr;
-  }
+.stat-card.urgent {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  border: 1px solid #fca5a5;
 }
-/* Downloads Page Specific */
+
+.stat-card.excellent {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.stat-card.urgent::after {
+  content: '⚡ URGENT';
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #dc2626;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.stat-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+/* =====================
+   DOWNLOADS PAGE
+   ===================== */
 .downloads-header {
   display: flex;
   justify-content: space-between;
@@ -1073,6 +1115,7 @@ body {
   align-items: center;
   gap: 16px;
   margin-bottom: 16px;
+  flex-wrap: wrap;
 }
 
 .file-icon {
@@ -1084,6 +1127,7 @@ body {
   justify-content: center;
   font-size: 24px;
   color: white;
+  flex-shrink: 0;
 }
 
 .file-icon.pdf { background: #dc2626; }
@@ -1107,6 +1151,7 @@ body {
   border-radius: 12px;
   font-size: 11px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .download-badge.new { background: #dbeafe; color: #1e40af; }
@@ -1121,6 +1166,7 @@ body {
   justify-content: space-between;
   margin-bottom: 8px;
   font-size: 13px;
+  gap: 8px;
 }
 
 .detail-value {
@@ -1130,12 +1176,15 @@ body {
 .detail-value.blue { color: #3b82f6; }
 .detail-value.green { color: #10b981; }
 .detail-value.orange { color: #f59e0b; }
+.detail-value.urgent { color: #dc2626; }
+.detail-value.excellent { color: #10b981; font-weight: 700; }
 
 .download-actions {
   display: flex;
   gap: 12px;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .file-checkbox {
@@ -1165,12 +1214,6 @@ body {
   font-weight: bold;
 }
 
-.btn-icon.danger {
-  background: #fee2e2;
-  color: #dc2626;
-  border-color: #fecaca;
-}
-
 .bulk-actions {
   display: flex;
   gap: 16px;
@@ -1179,14 +1222,12 @@ body {
   background: #f8fafc;
   border-radius: 16px;
   margin-top: 24px;
+  flex-wrap: wrap;
 }
 
-@media (max-width: 768px) {
-  .downloads-grid {
-    grid-template-columns: 1fr;
-  }
-}
-/* Exam Page Specific */
+/* =====================
+   EXAM PAGE
+   ===================== */
 .exam-header {
   display: flex;
   justify-content: space-between;
@@ -1216,37 +1257,9 @@ body {
   margin-bottom: 40px;
 }
 
-.exam-stats-grid .stat-card {
-  padding: 24px;
-  position: relative;
-  overflow: hidden;
-}
-
-.stat-card.urgent {
-  background: linear-gradient(135deg, #fee2e2, #fecaca);
-  border: 1px solid #fca5a5;
-}
-
-.stat-card.urgent::after {
-  content: '⚡ URGENT';
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: #dc2626;
-  color: white;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 600;
-}
-
-.stat-icon {
-  font-size: 32px;
-  margin-bottom: 12px;
-}
-
 .exams-section h2,
-.performance-section h2 {
+.performance-section h2,
+.quick-practice h2 {
   font-size: 24px;
   margin-bottom: 24px;
   color: #111827;
@@ -1276,6 +1289,7 @@ body {
 
 .exam-card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.15);
 }
 
 .exam-countdown {
@@ -1288,18 +1302,12 @@ body {
   border-radius: 20px;
   font-weight: 700;
   font-size: 14px;
+  text-align: center;
 }
 
 .countdown-days {
   display: block;
   font-size: 24px;
-}
-
-.exam-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
 }
 
 .exam-icon {
@@ -1311,6 +1319,8 @@ body {
   justify-content: center;
   font-size: 28px;
   color: white;
+  flex-shrink: 0;
+  margin-bottom: 0;
 }
 
 .exam-icon.physics { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
@@ -1318,25 +1328,28 @@ body {
 .exam-icon.maths { background: linear-gradient(135deg, #f59e0b, #d97706); }
 .exam-icon.cs { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
 
+/* standalone icon (exams page) */
+.exam-icon[style*="margin-bottom: 16px"],
+.exams-grid .exam-icon {
+  margin-bottom: 16px;
+}
+
 .exam-badge {
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .exam-badge.urgent { background: #fee2e2; color: #dc2626; }
 .exam-badge.quiz { background: #dbeafe; color: #1e40af; }
+.exam-badge.practice { background: #dbeafe; color: #1e40af; }
+.exam-badge.mock { background: #f3e8ff; color: #7c3aed; }
+.exam-badge.midterm { background: #fed7aa; color: #c2410c; }
 
 .exam-details {
   margin-bottom: 24px;
-}
-
-.detail-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 12px;
-  font-size: 14px;
 }
 
 .exam-progress {
@@ -1346,20 +1359,25 @@ body {
   font-size: 13px;
 }
 
-.progress-bar.small {
-  flex: 1;
-  height: 6px;
-}
-
-.progress-fill.urgent-fill { background: #dc2626; }
-.progress-fill.chemistry-fill { background: #10b981; }
-.progress-fill.maths-fill { background: #f59e0b; }
-.progress-fill.cs-fill { background: #8b5cf6; }
-
 .exam-actions {
   display: flex;
   gap: 12px;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+.exam-timer {
+  background: #f8fafc;
+  padding: 12px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.exam-timer.countdown {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  color: #92400e;
 }
 
 .performance-grid {
@@ -1374,6 +1392,7 @@ body {
   padding: 24px;
   text-align: center;
   position: relative;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
 }
 
 .score-circle {
@@ -1394,12 +1413,79 @@ body {
   background: linear-gradient(135deg, #f59e0b, #d97706);
 }
 
-@media (max-width: 768px) {
-  .exams-grid {
-    grid-template-columns: 1fr;
-  }
+.score-circle.excellent { background: linear-gradient(135deg, #10b981, #059669); }
+.score-circle.good { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+
+.perf-trend {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
 }
-/* Community Page Specific */
+
+.perf-trend.positive { background: #dcfce7; color: #166534; }
+.perf-trend.negative { background: #fee2e2; color: #dc2626; }
+.perf-trend.neutral { background: #f3f4f6; color: #374151; }
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.quick-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 24px;
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quick-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+}
+
+.quick-icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.tools-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tool-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tool-btn:hover {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.tool-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+/* =====================
+   COMMUNITY PAGE
+   ===================== */
 .community-header {
   display: flex;
   justify-content: space-between;
@@ -1419,6 +1505,7 @@ body {
   display: flex;
   gap: 16px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .post-tabs {
@@ -1427,6 +1514,7 @@ body {
   background: #f8fafc;
   border-radius: 12px;
   padding: 4px;
+  flex-wrap: wrap;
 }
 
 .tab {
@@ -1437,6 +1525,7 @@ body {
   cursor: pointer;
   font-size: 14px;
   transition: all 0.2s;
+  white-space: nowrap;
 }
 
 .tab.active {
@@ -1486,6 +1575,7 @@ body {
   align-items: center;
   gap: 12px;
   margin-bottom: 16px;
+  flex-wrap: wrap;
 }
 
 .post-avatar {
@@ -1498,6 +1588,7 @@ body {
   font-size: 14px;
   font-weight: 600;
   color: white;
+  flex-shrink: 0;
 }
 
 .post-avatar.physics { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
@@ -1533,24 +1624,12 @@ body {
   gap: 12px;
 }
 
-.file-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  color: white;
-}
-
-.file-icon.pdf { background: #dc2626; }
-
 .post-actions {
   display: flex;
   gap: 16px;
   padding-top: 16px;
   border-top: 1px solid #f1f5f9;
+  flex-wrap: wrap;
 }
 
 .action-btn {
@@ -1564,6 +1643,7 @@ body {
   cursor: pointer;
   transition: all 0.2s;
   font-size: 14px;
+  white-space: nowrap;
 }
 
 .action-btn:hover {
@@ -1596,16 +1676,12 @@ body {
   justify-content: center;
   font-size: 12px;
   font-weight: 600;
+  flex-shrink: 0;
 }
 
 .load-more {
   text-align: center;
   margin: 40px 0;
-}
-
-.btn-outline.large {
-  padding: 12px 32px;
-  font-size: 16px;
 }
 
 .trending-list {
@@ -1639,24 +1715,19 @@ body {
   justify-content: center;
   font-weight: 600;
   font-size: 12px;
+  flex-shrink: 0;
 }
 
 .trend-count {
   margin-left: auto;
   color: #6b7280;
   font-size: 13px;
+  white-space: nowrap;
 }
 
-@media (max-width: 768px) {
-  .community-controls {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .post-tabs {
-    justify-content: center;
-  }
-}
-/* Courses Page Specific */
+/* =====================
+   COURSES PAGE
+   ===================== */
 .courses-header {
   display: flex;
   justify-content: space-between;
@@ -1723,6 +1794,7 @@ body {
   align-items: center;
   gap: 16px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .course-icon {
@@ -1749,6 +1821,7 @@ body {
   font-size: 24px;
   font-weight: 700;
   flex: 1;
+  min-width: 0;
 }
 
 .course-badge {
@@ -1756,6 +1829,7 @@ body {
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .course-badge.active { background: #dcfce7; color: #166534; }
@@ -1768,52 +1842,18 @@ body {
   display: flex;
   gap: 24px;
   margin-bottom: 24px;
-}
-
-.stat-item {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.stat-label {
-  font-size: 12px;
-  color: #6b7280;
-  font-weight: 500;
-}
-
-.stat-value {
-  font-size: 18px;
-  font-weight: 700;
-  color: #111827;
+  flex-wrap: wrap;
 }
 
 .course-progress {
   margin-bottom: 24px;
 }
 
-.progress-bar {
-  height: 12px;
-  background: #e5e7eb;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  border-radius: 6px;
-  transition: width 0.5s ease;
-}
-
-.progress-fill.btech-fill { background: linear-gradient(90deg, #3b82f6, #1d4ed8); }
-.progress-fill.bca-fill { background: linear-gradient(90deg, #10b981, #059669); }
-.progress-fill.bsc-fill { background: linear-gradient(90deg, #ec4899, #db2777); }
-.progress-fill.ai-fill { background: linear-gradient(90deg, #06b6d4, #0891b2); }
-
 .course-actions {
   display: flex;
   gap: 12px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .quick-actions-list {
@@ -1839,16 +1879,9 @@ body {
   background: #eff6ff;
 }
 
-.quick-icon {
-  font-size: 20px;
-}
-
-@media (max-width: 768px) {
-  .courses-grid {
-    grid-template-columns: 1fr;
-  }
-}
-/* Assignments Page Specific */
+/* =====================
+   ASSIGNMENTS PAGE
+   ===================== */
 .assignments-header {
   display: flex;
   justify-content: space-between;
@@ -1931,6 +1964,7 @@ body {
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .urgency-badge.urgent {
@@ -1943,6 +1977,7 @@ body {
   align-items: center;
   gap: 16px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .assignment-icon {
@@ -1954,6 +1989,7 @@ body {
   justify-content: center;
   font-size: 28px;
   color: white;
+  flex-shrink: 0;
 }
 
 .assignment-icon.physics { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
@@ -1967,6 +2003,7 @@ body {
   font-size: 12px;
   font-weight: 600;
   margin-left: auto;
+  white-space: nowrap;
 }
 
 .assignment-badge.pending { background: #dbeafe; color: #1e40af; }
@@ -1978,21 +2015,6 @@ body {
   margin-bottom: 20px;
 }
 
-.detail-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 12px;
-  font-size: 14px;
-}
-
-.detail-value {
-  font-weight: 500;
-}
-
-.detail-value.urgent { color: #dc2626; }
-.detail-value.green { color: #10b981; }
-.detail-value.excellent { color: #10b981; font-weight: 700; }
-
 .assignment-progress {
   display: flex;
   align-items: center;
@@ -2001,17 +2023,11 @@ body {
   font-size: 13px;
 }
 
-.progress-bar.small {
-  flex: 1;
-  height: 6px;
-}
-
-.progress-fill.urgent-fill { background: #dc2626; }
-
 .assignment-actions {
   display: flex;
   gap: 12px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .file-upload-zone {
@@ -2033,22 +2049,9 @@ body {
   margin-bottom: 16px;
 }
 
-.bulk-actions {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  padding: 20px;
-  background: #f8fafc;
-  border-radius: 16px;
-  margin-top: 32px;
-}
-
-@media (max-width: 768px) {
-  .assignments-grid {
-    grid-template-columns: 1fr;
-  }
-}
-/* Saved Page Specific */
+/* =====================
+   SAVED PAGE
+   ===================== */
 .saved-header {
   display: flex;
   justify-content: space-between;
@@ -2068,6 +2071,7 @@ body {
   display: flex;
   gap: 16px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .save-tabs {
@@ -2076,21 +2080,7 @@ body {
   background: #f8fafc;
   border-radius: 12px;
   padding: 4px;
-}
-
-.tab {
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.2s;
-}
-
-.tab.active {
-  background: #2563eb;
-  color: white;
+  flex-wrap: wrap;
 }
 
 .saved-stats-grid {
@@ -2178,12 +2168,14 @@ body {
   display: flex;
   gap: 8px;
   margin-top: 8px;
+  flex-wrap: wrap;
 }
 
 .saved-size, .saved-count, .saved-priority {
   margin-left: auto;
   font-size: 12px;
   font-weight: 500;
+  flex-shrink: 0;
 }
 
 .saved-priority.high {
@@ -2236,18 +2228,6 @@ body {
   justify-content: center;
 }
 
-.plus-icon {
-  font-size: 32px;
-  background: #e5e7eb;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 12px;
-}
-
 .collection-color {
   width: 40px;
   height: 40px;
@@ -2257,12 +2237,9 @@ body {
 
 .collection-color.blue { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
 
-@media (max-width: 768px) {
-  .saved-grid {
-    grid-template-columns: 1fr;
-  }
-}
-/* Exams Page Specific */
+/* =====================
+   EXAMS PAGE (standalone)
+   ===================== */
 .exams-header {
   display: flex;
   justify-content: space-between;
@@ -2285,219 +2262,326 @@ body {
   flex-wrap: wrap;
 }
 
-.exam-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  margin-bottom: 40px;
-}
+/* =====================
+   RESPONSIVE — TABLET (≤1024px)
+   ===================== */
+@media (max-width: 1024px) {
+  .sidebar {
+    display: none;
+  }
 
-.stat-card.excellent {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: white;
-}
+  .content {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
 
-.exams-section h2,
-.performance-section h2,
-.quick-practice h2 {
-  font-size: 24px;
-  margin-bottom: 24px;
-  color: #111827;
-}
+  .welcome-card {
+    grid-template-columns: 1fr;
+  }
 
-.exams-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 24px;
-}
+  .topbar {
+    padding: 0 16px;
+    height: auto;
+    min-height: 72px;
+  }
 
-.exam-card {
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 28px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-  border: 1px solid #f1f5f9;
-  transition: all 0.3s ease;
-}
+  .topnav {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
 
-.exam-card.urgent {
-  border-left: 5px solid #dc2626;
-  box-shadow: 0 16px 48px rgba(220, 38, 38, 0.15);
-}
+  .topnav-link {
+    font-size: 13px;
+    padding: 6px 12px;
+    border-radius: 6px;
+  }
 
-.exam-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 24px 64px rgba(0,0,0,0.15);
-}
+  .topnav-link.active {
+    border-bottom: none;
+    background: #eff6ff;
+  }
 
-.exam-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  color: white;
-  margin-bottom: 16px;
-}
+  .search input {
+    width: 200px;
+  }
 
-.exam-icon.physics { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
-.exam-icon.cs { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
-.exam-icon.maths { background: linear-gradient(135deg, #f59e0b, #d97706); }
+  .qa-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-.exam-badge {
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-}
+  .notes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
 
-.exam-badge.practice { background: #dbeafe; color: #1e40af; }
-.exam-badge.mock { background: #f3e8ff; color: #7c3aed; }
-.exam-badge.midterm { background: #fed7aa; color: #c2410c; }
-.exam-badge.urgent { background: #dc2626; color: white; }
+  .subjects-grid {
+    grid-template-columns: 1fr;
+  }
 
-.exam-details {
-  margin-bottom: 24px;
-}
+  .downloads-grid {
+    grid-template-columns: 1fr;
+  }
 
-.detail-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 12px;
-  font-size: 14px;
-}
+  .courses-grid {
+    grid-template-columns: 1fr;
+  }
 
-.exam-timer {
-  background: #f8fafc;
-  padding: 12px;
-  border-radius: 12px;
-  text-align: center;
-  font-weight: 600;
-  margin-top: 12px;
-}
+  .assignments-grid {
+    grid-template-columns: 1fr;
+  }
 
-.exam-timer.countdown {
-  background: linear-gradient(135deg, #fef3c7, #fde68a);
-  color: #92400e;
-}
-
-.exam-actions {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.btn-primary.large {
-  padding: 14px 28px;
-  font-size: 16px;
-  flex: 1;
-}
-
-.start-icon {
-  margin-right: 8px;
-}
-
-.performance-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 24px;
-  margin-bottom: 40px;
-}
-
-.performance-card {
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 28px;
-  text-align: center;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-}
-
-.score-circle {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin: 0 auto 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  font-weight: 700;
-  color: white;
-}
-
-.score-circle.excellent { background: linear-gradient(135deg, #10b981, #059669); }
-.score-circle.good { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
-.score-circle.warning { background: linear-gradient(135deg, #f59e0b, #d97706); }
-
-.perf-trend {
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.perf-trend.positive { background: #dcfce7; color: #166534; }
-.perf-trend.negative { background: #fee2e2; color: #dc2626; }
-.perf-trend.neutral { background: #f3f4f6; color: #374151; }
-
-.quick-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-}
-
-.quick-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 24px;
-  border-radius: 20px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.quick-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
-}
-
-.quick-icon {
-  font-size: 36px;
-  margin-bottom: 12px;
-  display: block;
-}
-
-.tools-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.tool-btn {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px;
-  border-radius: 16px;
-  border: 1px solid #e5e7eb;
-  background: white;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.tool-btn:hover {
-  border-color: #2563eb;
-  background: #eff6ff;
-}
-
-.tool-icon {
-  font-size: 20px;
-}
-
-@media (max-width: 768px) {
   .exams-grid {
     grid-template-columns: 1fr;
+  }
+
+  .saved-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =====================
+   RESPONSIVE — MOBILE (≤640px)
+   ===================== */
+@media (max-width: 640px) {
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .topnav {
+    order: 2;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .topbar-right {
+    order: 1;
+    width: 100%;
+    display: flex;
+    gap: 12px;
+  }
+
+  .search {
+    flex: 1;
+  }
+
+  .search input {
+    width: 100%;
+  }
+
+  .topnav-link {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  .content {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .welcome-card {
+    padding: 16px;
+  }
+
+  .welcome-text h1 {
+    font-size: 20px;
+  }
+
+  .qa-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .progress-main {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .circle {
+    align-self: center;
+  }
+
+  .prog-row {
+    grid-template-columns: 50px 1fr 36px;
+  }
+
+  .notes-grid,
+  .subjects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .note-card,
+  .subject-card {
+    padding: 16px;
+  }
+
+  .notes-header,
+  .subjects-header,
+  .downloads-header,
+  .exam-header,
+  .community-header,
+  .courses-header,
+  .assignments-header,
+  .saved-header,
+  .exams-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .notes-controls,
+  .subjects-controls,
+  .downloads-controls,
+  .exam-controls,
+  .community-controls,
+  .courses-controls,
+  .assignments-controls,
+  .saved-controls,
+  .exams-controls {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+
+  .btn-outline {
+    width: 100%;
+    text-align: center;
+  }
+
+  .post-tabs,
+  .save-tabs {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .subject-stats,
+  .course-stats {
+    gap: 16px;
+  }
+
+  .stat-value {
+    font-size: 16px;
+  }
+
+  .exam-countdown {
+    position: static;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+
+  .assignment-urgency {
+    position: static;
+    margin-bottom: 8px;
+  }
+
+  .course-header h2,
+  .subject-header h2 {
+    font-size: 18px;
+  }
+
+  .exam-card,
+  .assignment-card,
+  .course-card,
+  .subject-card,
+  .download-card,
+  .post-card,
+  .saved-card {
+    padding: 16px;
+  }
+
+  .exam-icon,
+  .assignment-icon,
+  .course-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+  }
+
+  .score-circle {
+    width: 80px;
+    height: 80px;
+    font-size: 22px;
+  }
+
+  .performance-grid,
+  .quick-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bulk-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .collections-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-overview,
+  .exam-stats-grid,
+  .assignment-stats-grid,
+  .courses-stats-grid,
+  .community-stats-grid,
+  .saved-stats-grid,
+  .downloads-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .stat-card h3 {
+    font-size: 24px;
+  }
+
+  .stat-card p,
+  .stat-card.urgent::after {
+    font-size: 10px;
+  }
+
+  .storage-bar {
+    width: 100%;
+  }
+
+  .post-actions {
+    gap: 8px;
+  }
+
+  .action-btn {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}
+
+/* =====================
+   RESPONSIVE — SMALL MOBILE (≤380px)
+   ===================== */
+@media (max-width: 380px) {
+  .qa-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats-overview,
+  .exam-stats-grid,
+  .assignment-stats-grid,
+  .courses-stats-grid,
+  .community-stats-grid,
+  .saved-stats-grid,
+  .downloads-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .welcome-text h1 {
+    font-size: 18px;
+  }
+
+  .topnav-link {
+    font-size: 11px;
+    padding: 4px 6px;
   }
 }
