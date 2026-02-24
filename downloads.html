@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Downloads | ApnaSEM</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar (same) -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">A</div>
+      <span class="logo-text">ApnaSEM</span>
+    </div>
+    <nav class="menu">
+      <a href="index.html" class="menu-item"><span class="menu-icon">🏠</span>Dashboard</a>
+      <a href="courses.html" class="menu-item"><span class="menu-icon">📚</span>My Courses</a>
+      <a href="notes.html" class="menu-item"><span class="menu-icon">📝</span>Notes</a>
+      <a href="assignments.html" class="menu-item"><span class="menu-icon">📄</span>Assignments</a>
+      <a href="saved.html" class="menu-item"><span class="menu-icon">💾</span>Saved</a>
+      <a href="exam.html" class="menu-item"><span class="menu-icon">🧪</span>My Exams</a>
+    </nav>
+    <div class="sidebar-help">
+      <p class="help-title">Need Help?</p>
+      <button class="btn-outline">Chat Support</button>
+    </div>
+    <div class="sidebar-premium">
+      <p class="premium-badge">Upgrade to <span>Premium</span></p>
+      <p class="premium-text">Get full access + offline download</p>
+      <button class="btn-primary full">Go Premium</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <nav class="topnav">
+        <a href="index.html" class="topnav-link">Home</a>
+        <a href="notes.html" class="topnav-link">Notes</a>
+        <a href="subjects.html" class="topnav-link">Subjects</a>
+        <a href="downloads.html" class="topnav-link active">Downloads</a>
+        <a href="exam.html" class="topnav-link">Exam</a>
+        <a href="community.html" class="topnav-link">Community</a>
+      </nav>
+      <div class="topbar-right">
+        <div class="search">
+          <input type="text" placeholder="🔍 Search downloads..." id="downloadsSearch" onkeyup="filterDownloads()">
+        </div>
+        <div class="user">
+          <div class="user-avatar">M</div>
+          <div class="user-info">
+            <p class="user-name">Mauli Chakor</p>
+            <p class="user-role">B.Tech CSE</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <section class="col-main full-width">
+        <!-- Downloads Header -->
+        <div class="downloads-header">
+          <div>
+            <h1>📥 My Downloads</h1>
+            <div class="storage-info">
+              <span class="storage-used">2.3 GB used</span>
+              <span class="storage-total">of 5 GB free</span>
+              <div class="storage-bar">
+                <div class="storage-fill" style="width: 46%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="downloads-controls">
+            <select id="typeFilter" class="filter-select" onchange="filterDownloads()">
+              <option value="all">All Files</option>
+              <option value="pdf">PDF Notes</option>
+              <option value="ppt">Presentations</option>
+              <option value="zip">Question Papers</option>
+            </select>
+            <select id="dateFilter" class="filter-select" onchange="filterDownloads()">
+              <option value="all">All Time</option>
+              <option value="week">Last 7 Days</option>
+              <option value="month">Last Month</option>
+            </select>
+            <button class="btn-primary" onclick="clearAll()">🗑️ Clear All</button>
+          </div>
+        </div>
+
+        <!-- Downloads Stats -->
+        <div class="downloads-stats">
+          <div class="stat-card">
+            <h3>127</h3>
+            <p>Total Files</p>
+          </div>
+          <div class="stat-card">
+            <h3>2.3 GB</h3>
+            <p>Storage Used</p>
+          </div>
+          <div class="stat-card">
+            <h3>85%</h3>
+            <p>View Rate</p>
+          </div>
+          <div class="stat-card">
+            <h3>42</h3>
+            <p>New Today</p>
+          </div>
+        </div>
+
+        <!-- Downloads List -->
+        <div class="downloads-grid" id="downloadsGrid">
+          <!-- Recent Downloads -->
+          <div class="download-card recent" data-type="pdf" data-date="today" data-name="datastructures">
+            <div class="download-header">
+              <div class="file-icon pdf">📄</div>
+              <div class="file-info">
+                <h3>DS_Ch5_Notes.pdf</h3>
+                <p class="file-path">Data Structures / Chapter 5</p>
+              </div>
+              <span class="download-badge new">New</span>
+            </div>
+            <div class="download-details">
+              <div class="detail-row">
+                <span>Size:</span>
+                <span class="detail-value">2.1 MB</span>
+              </div>
+              <div class="detail-row">
+                <span>Downloaded:</span>
+                <span class="detail-value">2 hours ago</span>
+              </div>
+              <div class="detail-row">
+                <span>Subject:</span>
+                <span class="detail-value blue">Computer Science</span>
+              </div>
+            </div>
+            <div class="download-actions">
+              <button class="btn-primary" onclick="openFile('DS_Ch5_Notes.pdf')">📱 Open</button>
+              <button class="btn-outline" onclick="shareFile('DS_Ch5_Notes.pdf')">↗️ Share</button>
+              <button class="btn-icon danger" onclick="deleteFile(this)">🗑️</button>
+              <label class="file-checkbox">
+                <input type="checkbox" onchange="toggleSelect(this)">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Chemistry Notes -->
+          <div class="download-card" data-type="pdf" data-date="today" data-name="organicchemistry">
+            <div class="download-header">
+              <div class="file-icon pdf">📄</div>
+              <div class="file-info">
+                <h3>Organic_Reactions.pdf</h3>
+                <p class="file-path">Chemistry / Unit 3</p>
+              </div>
+            </div>
+            <div class="download-details">
+              <div class="detail-row">
+                <span>Size:</span>
+                <span class="detail-value">1.8 MB</span>
+              </div>
+              <div class="detail-row">
+                <span>Downloaded:</span>
+                <span class="detail-value">4 hours ago</span>
+              </div>
+              <div class="detail-row">
+                <span>Subject:</span>
+                <span class="detail-value green">Chemistry</span>
+              </div>
+            </div>
+            <div class="download-actions">
+              <button class="btn-primary" onclick="openFile('Organic_Reactions.pdf')">📱 Open</button>
+              <button class="btn-outline" onclick="shareFile('Organic_Reactions.pdf')">↗️ Share</button>
+              <button class="btn-icon danger" onclick="deleteFile(this)">🗑️</button>
+              <label class="file-checkbox">
+                <input type="checkbox" onchange="toggleSelect(this)">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Physics Question Paper -->
+          <div class="download-card" data-type="zip" data-date="yesterday" data-name="physicsqp">
+            <div class="download-header">
+              <div class="file-icon zip">📦</div>
+              <div class="file-info">
+                <h3>Physics_Midterm_QP.zip</h3>
+                <p class="file-path">Physics / Question Papers</p>
+              </div>
+              <span class="download-badge popular">Popular</span>
+            </div>
+            <div class="download-details">
+              <div class="detail-row">
+                <span>Size:</span>
+                <span class="detail-value">3.2 MB</span>
+              </div>
+              <div class="detail-row">
+                <span>Downloaded:</span>
+                <span class="detail-value">Yesterday</span>
+              </div>
+              <div class="detail-row">
+                <span>Subject:</span>
+                <span class="detail-value blue">Physics</span>
+              </div>
+            </div>
+            <div class="download-actions">
+              <button class="btn-primary" onclick="openFile('Physics_Midterm_QP.zip')">📱 Open</button>
+              <button class="btn-outline" onclick="shareFile('Physics_Midterm_QP.zip')">↗️ Share</button>
+              <button class="btn-icon danger" onclick="deleteFile(this)">🗑️</button>
+              <label class="file-checkbox">
+                <input type="checkbox" onchange="toggleSelect(this)">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Add 10+ more download cards with different types (PPT, ZIP, PDF) -->
+          <div class="download-card" data-type="ppt" data-date="week" data-name="calculus">
+            <div class="download-header">
+              <div class="file-icon ppt">📊</div>
+              <div class="file-info">
+                <h3>Calculus_Limits.ppt</h3>
+                <p class="file-path">Mathematics / Slides</p>
+              </div>
+            </div>
+            <div class="download-details">
+              <div class="detail-row">
+                <span>Size:</span>
+                <span class="detail-value">4.5 MB</span>
+              </div>
+              <div class="detail-row">
+                <span>Downloaded:</span>
+                <span class="detail-value">3 days ago</span>
+              </div>
+              <div class="detail-row">
+                <span>Subject:</span>
+                <span class="detail-value orange">Mathematics</span>
+              </div>
+            </div>
+            <div class="download-actions">
+              <button class="btn-primary" onclick="openFile('Calculus_Limits.ppt')">📱 Open</button>
+              <button class="btn-outline" onclick="shareFile('Calculus_Limits.ppt')">↗️ Share</button>
+              <button class="btn-icon danger" onclick="deleteFile(this)">🗑️</button>
+              <label class="file-checkbox">
+                <input type="checkbox" onchange="toggleSelect(this)">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bulk Actions -->
+        <div class="bulk-actions" id="bulkActions" style="display: none;">
+          <span id="selectedCount">0 selected</span>
+          <button class="btn-primary" onclick="deleteSelected()">Delete Selected</button>
+          <button class="btn-outline" onclick="downloadSelected()">Download Again</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+<script>
+setActiveNav('downloads');
+</script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Community | ApnaSEM</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar (same) -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">A</div>
+      <span class="logo-text">ApnaSEM</span>
+    </div>
+    <nav class="menu">
+      <a href="index.html" class="menu-item"><span class="menu-icon">🏠</span>Dashboard</a>
+      <a href="courses.html" class="menu-item"><span class="menu-icon">📚</span>My Courses</a>
+      <a href="notes.html" class="menu-item"><span class="menu-icon">📝</span>Notes</a>
+      <a href="assignments.html" class="menu-item"><span class="menu-icon">📄</span>Assignments</a>
+      <a href="saved.html" class="menu-item"><span class="menu-icon">💾</span>Saved</a>
+      <a href="exam.html" class="menu-item"><span class="menu-icon">🧪</span>My Exams</a>
+    </nav>
+    <div class="sidebar-help">
+      <p class="help-title">Need Help?</p>
+      <button class="btn-outline">Chat Support</button>
+    </div>
+    <div class="sidebar-premium">
+      <p class="premium-badge">Upgrade to <span>Premium</span></p>
+      <p class="premium-text">Unlimited posts + priority replies</p>
+      <button class="btn-primary full">Go Premium</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <nav class="topnav">
+        <a href="index.html" class="topnav-link">Home</a>
+        <a href="notes.html" class="topnav-link">Notes</a>
+        <a href="subjects.html" class="topnav-link">Subjects</a>
+        <a href="downloads.html" class="topnav-link">Downloads</a>
+        <a href="exam.html" class="topnav-link">Exam</a>
+        <a href="community.html" class="topnav-link active">Community</a>
+      </nav>
+      <div class="topbar-right">
+        <div class="search">
+          <input type="text" placeholder="🔍 Search posts..." id="communitySearch" onkeyup="filterPosts()">
+        </div>
+        <div class="user">
+          <div class="user-avatar">M</div>
+          <div class="user-info">
+            <p class="user-name">Mauli Chakor</p>
+            <p class="user-role">B.Tech CSE • 2.1k followers</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <section class="col-main full-width">
+        <!-- Community Header -->
+        <div class="community-header">
+          <div>
+            <h1>👥 Community</h1>
+            <p class="community-stats">12.5k members • 2.3k posts this week</p>
+          </div>
+          <div class="community-controls">
+            <div class="post-tabs">
+              <button class="tab active" onclick="switchTab('all')">All</button>
+              <button class="tab" onclick="switchTab('notes')">Notes</button>
+              <button class="tab" onclick="switchTab('questions')">Questions</button>
+              <button class="tab" onclick="switchTab('study-groups')">Groups</button>
+            </div>
+            <button class="btn-primary" onclick="openPostModal()">
+              <span class="plus-icon">+</span> New Post
+            </button>
+          </div>
+        </div>
+
+        <!-- Community Stats -->
+        <div class="community-stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">💬</div>
+            <h3>2.3k</h3>
+            <p>Posts This Week</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">👥</div>
+            <h3>12.5k</h3>
+            <p>Active Members</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📈</div>
+            <h3>89%</h3>
+            <p>Response Rate</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⭐</div>
+            <h3>4.8</h3>
+            <p>Avg Rating</p>
+          </div>
+        </div>
+
+        <!-- Posts Feed -->
+        <div class="posts-feed" id="postsFeed">
+          <!-- Urgent Physics Help Post -->
+          <div class="post-card urgent" data-type="questions" data-tags="physics,urgent">
+            <div class="post-header">
+              <div class="post-avatar physics">RS</div>
+              <div class="post-author">
+                <h4>Rajesh S.</h4>
+                <p class="post-meta">2 min ago • Physics</p>
+              </div>
+              <div class="post-options">
+                <button class="btn-icon" onclick="toggleOptions(this)">⋮</button>
+              </div>
+            </div>
+            <div class="post-content">
+              <p><strong>URGENT!</strong> Anyone has <strong>Physics Ch-5 Mechanics notes</strong>? Mid-term tomorrow at 10 AM! Need Newton's Laws + Friction sections. Will share my Chemistry notes in return! 🙏</p>
+            </div>
+            <div class="post-actions">
+              <button class="action-btn" onclick="likePost(this)">
+                <span class="icon">👍</span>
+                <span class="count">24</span>
+              </button>
+              <button class="action-btn" onclick="commentPost(this)">
+                <span class="icon">💬</span>
+                <span class="count">8</span>
+              </button>
+              <button class="action-btn share-btn" onclick="sharePost(this)">
+                <span class="icon">📤</span>
+                <span class="count">2</span>
+              </button>
+            </div>
+            <div class="post-comments-preview">
+              <div class="comment-preview">
+                <div class="comment-avatar">MK</div>
+                <p><strong>Mauli K:</strong> Check downloads section, I uploaded it yesterday!</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notes Sharing Post -->
+          <div class="post-card" data-type="notes" data-tags="datastructures,cs">
+            <div class="post-header">
+              <div class="post-avatar cs">AP</div>
+              <div class="post-author">
+                <h4>Arjun P.</h4>
+                <p class="post-meta">1 hour ago • CSE</p>
+              </div>
+            </div>
+            <div class="post-content">
+              <p>Just finished <strong>Data Structures Ch-5</strong> notes! 🔥 Clean handwritten + theory + 25 solved problems. Download link in comments. Good luck for mid-terms everyone! 💪</p>
+              <div class="post-attachment">
+                <div class="file-preview">
+                  <span class="file-icon pdf">📄</span>
+                  <span>DS_Ch5_Notes.pdf (2.1 MB)</span>
+                </div>
+              </div>
+            </div>
+            <div class="post-actions">
+              <button class="action-btn liked" onclick="likePost(this)">
+                <span class="icon">👍</span>
+                <span class="count">156</span>
+              </button>
+              <button class="action-btn" onclick="commentPost(this)">
+                <span class="icon">💬</span>
+                <span class="count">42</span>
+              </button>
+              <button class="action-btn" onclick="sharePost(this)">
+                <span class="icon">📤</span>
+                <span class="count">19</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Study Group Post -->
+          <div class="post-card" data-type="study-groups" data-tags="maths,group">
+            <div class="post-header">
+              <div class="post-avatar maths">PS</div>
+              <div class="post-author">
+                <h4>Priya S.</h4>
+                <p class="post-meta">3 hours ago • Mathematics</p>
+              </div>
+            </div>
+            <div class="post-content">
+              <p>🔥 <strong>Mathematics Study Group</strong> - Calculus + Linear Algebra<br>
+              📅 Daily 7-8 PM (WhatsApp/Zoom)<br>
+              👥 8/12 spots filled<br>
+              💰 ₹50/session (notes included)<br><br>
+              DM me to join! First session FREE 🚀</p>
+            </div>
+            <div class="post-actions">
+              <button class="action-btn" onclick="likePost(this)">
+                <span class="icon">👍</span>
+                <span class="count">89</span>
+              </button>
+              <button class="action-btn" onclick="commentPost(this)">
+                <span class="icon">💬</span>
+                <span class="count">23</span>
+              </button>
+              <button class="action-btn" onclick="joinGroup(this)">
+                <span class="icon">👥</span>
+                <span class="count">Join</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Question Post -->
+          <div class="post-card" data-type="questions" data-tags="os,cs">
+            <div class="post-header">
+              <div class="post-avatar cs">SK</div>
+              <div class="post-author">
+                <h4>Sneha K.</h4>
+                <p class="post-meta">5 hours ago • Operating Systems</p>
+              </div>
+            </div>
+            <div class="post-content">
+              <p>❓ <strong>OS Question:</strong> In Round Robin scheduling, if time quantum = 4ms and processes P1(24), P2(3), P3(3), what's the average waiting time?<br><br>
+              Anyone can explain with Gantt chart? Mid-term tomorrow 😰</p>
+            </div>
+            <div class="post-actions">
+              <button class="action-btn" onclick="likePost(this)">
+                <span class="icon">👍</span>
+                <span class="count">67</span>
+              </button>
+              <button class="action-btn" onclick="commentPost(this)">
+                <span class="icon">💬</span>
+                <span class="count">15</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Load More -->
+        <div class="load-more">
+          <button class="btn-outline large" onclick="loadMorePosts()">Load More Posts</button>
+        </div>
+      </section>
+
+      <!-- Right Sidebar - Trending -->
+      <section class="col-side">
+        <div class="card">
+          <h3>🔥 Trending</h3>
+          <div class="trending-list">
+            <div class="trending-item">
+              <span class="trend-rank">#1</span>
+              <span>Physics Mid-term</span>
+              <span class="trend-count">1.2k</span>
+            </div>
+            <div class="trending-item">
+              <span class="trend-rank">#2</span>
+              <span>DS Notes Ch-5</span>
+              <span class="trend-count">892</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+<script>
+setActiveNav('community');
+</script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ApnaSEM Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">A</div>
+      <span class="logo-text">ApnaSEM</span>
+    </div>
+
+    <nav class="menu">
+      <a href="index.html" class="menu-item active">
+        <span class="menu-icon">🏠</span>
+        <span>Dashboard</span>
+      </a>
+      <a href="mycourses.html" class="menu-item">
+        <span class="menu-icon">📚</span>
+        <span>My Courses</span>
+      </a>
+      <a href="notes.html" class="menu-item">
+        <span class="menu-icon">📝</span>
+        <span>Notes</span>
+      </a>
+      <a href="assignments.html" class="menu-item">
+        <span class="menu-icon">📄</span>
+        <span>Assignments</span>
+      </a>
+      <a href="saved.html" class="menu-item">
+        <span class="menu-icon">💾</span>
+        <span>Saved</span>
+      </a>
+      <a href="exam.html" class="menu-item">
+        <span class="menu-icon">🧪</span>
+        <span>My Exams</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-help">
+      <p class="help-title">Need Help?</p>
+      <button class="btn-outline" onclick="openChat()">Chat Support</button>
+    </div>
+
+    <div class="sidebar-premium">
+      <p class="premium-badge">Upgrade to <span>Premium</span></p>
+      <p class="premium-text">Get full access + offline download</p>
+      <button class="btn-primary full" onclick="goPremium()">Go Premium</button>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <div class="main">
+    <!-- Top bar -->
+    <header class="topbar">
+      <nav class="topnav">
+        <a href="dashboard.html" class="topnav-link active">Home</a>
+        <a href="notes.html" class="topnav-link">Notes</a>
+        <a href="subjects.html" class="topnav-link">Subjects</a>
+        <a href="downloads.html" class="topnav-link">Downloads</a>
+        <a href="exam.html" class="topnav-link">Exam</a>
+        <a href="community.html" class="topnav-link">Community</a>
+      </nav>
+
+      <div class="topbar-right">
+        <div class="search">
+          <input type="text" placeholder="Search Notes, Subjects..." id="searchInput" onkeyup="searchNotes()">
+        </div>
+        <div class="user">
+          <div class="user-avatar">S</div>
+          <div class="user-info">
+            <p class="user-name">Mauli Chakor</p>
+            <p class="user-role">BCS</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content grid -->
+    <div class="content">
+      <!-- Welcome + Quick Access + Latest -->
+      <section class="col-main">
+        <!-- Welcome card -->
+        <div class="welcome-card">
+          <div class="welcome-text">
+            <p class="welcome-subtitle">Welcome to</p>
+            <h1>ApnaSEM</h1>
+            <p class="welcome-desc">Your all‑in‑one study platform</p>
+            <ul class="welcome-list">
+              <li>Access teacher uploaded notes</li>
+              <li>Download & learn anytime</li>
+              <li>Prepare for exams</li>
+            </ul>
+            <button class="btn-primary" onclick="getStarted()">Get Started →</button>
+          </div>
+          <div class="welcome-illustration">
+            <div class="illu-box">📚 Study Illustration</div>
+          </div>
+        </div>
+
+        <!-- Quick Access -->
+        <div class="card quick-access">
+          <div class="card-header">
+            <h2>Quick Access</h2>
+          </div>
+          <div class="qa-grid">
+            <div class="qa-item active" onclick="openSubject('physics')">
+              <div class="qa-icon physics">🧲</div>
+              <p class="qa-title">Physics</p>
+              <p class="qa-meta">120 Notes</p>
+            </div>
+            <div class="qa-item" onclick="openSubject('chemistry')">
+              <div class="qa-icon chemistry">⚗️</div>
+              <p class="qa-title">Chemistry</p>
+              <p class="qa-meta">95 Notes</p>
+            </div>
+            <div class="qa-item" onclick="openSubject('maths')">
+              <div class="qa-icon maths">📐</div>
+              <p class="qa-title">Mathematics</p>
+              <p class="qa-meta">150 Notes</p>
+            </div>
+            <div class="qa-item" onclick="openSubject('cs')">
+              <div class="qa-icon cs">💻</div>
+              <p class="qa-title">Computer Science</p>
+              <p class="qa-meta">80 Notes</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Latest Notes -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Latest Notes</h2>
+            <a href="notes.html" class="link-btn">View All</a>
+          </div>
+
+          <div class="note-row" onclick="openNote('ds')">
+            <div class="note-info">
+              <div class="note-icon blue">DS</div>
+              <div>
+                <p class="note-title">Data Structures - Chapter 5</p>
+                <p class="note-meta">Dr. Rajesh Kumar • 2 hours ago</p>
+              </div>
+            </div>
+            <button class="btn-outline small">Download</button>
+          </div>
+
+          <div class="note-row" onclick="openNote('oc')">
+            <div class="note-info">
+              <div class="note-icon green">OC</div>
+              <div>
+                <p class="note-title">Organic Chemistry - Reactions</p>
+                <p class="note-meta">Prof. Meena Singh • Yesterday</p>
+              </div>
+            </div>
+            <button class="btn-outline small">Download</button>
+          </div>
+
+          <div class="note-row" onclick="openNote('os')">
+            <div class="note-info">
+              <div class="note-icon orange">OS</div>
+              <div>
+                <p class="note-title">Operating Systems - Unit 2</p>
+                <p class="note-meta">Mr. Arjun Patel • Apr 20</p>
+              </div>
+            </div>
+            <button class="btn-outline small">Download</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right column -->
+      <section class="col-side">
+        <!-- Announcements -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Announcements</h2>
+          </div>
+          <div class="ann-item" onclick="openAnnouncement('midterm')">
+            <div>
+              <p class="ann-title">Mid‑Term Exam</p>
+              <p class="ann-date">May 15, 2024</p>
+            </div>
+            <span class="ann-arrow">➔</span>
+          </div>
+          <div class="ann-item" onclick="openAnnouncement('assignment')">
+            <div>
+              <p class="ann-title">Submit Assignment</p>
+              <p class="ann-date">Apr 30, 2024</p>
+            </div>
+            <a href="#" class="link-btn small">See All</a>
+          </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Your Progress</h2>
+          </div>
+          <div class="progress-main">
+            <div class="circle">
+              <span>75%</span>
+              <small>Completed</small>
+            </div>
+            <div class="progress-list">
+              <div class="prog-row">
+                <span>Physics</span>
+                <div class="bar"><div class="fill physics" style="width:90%"></div></div>
+                <span class="prog-val">90%</span>
+              </div>
+              <div class="prog-row">
+                <span>Maths</span>
+                <div class="bar"><div class="fill maths" style="width:70%"></div></div>
+                <span class="prog-val">70%</span>
+              </div>
+              <div class="prog-row">
+                <span>CSE</span>
+                <div class="bar"><div class="fill cs" style="width:60%"></div></div>
+                <span class="prog-val">60%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Assignments | ApnaSEM</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">A</div>
+      <span class="logo-text">ApnaSEM</span>
+    </div>
+    <nav class="menu">
+      <a href="index.html" class="menu-item"><span class="menu-icon">🏠</span>Dashboard</a>
+      <a href="courses.html" class="menu-item"><span class="menu-icon">📚</span>My Courses</a>
+      <a href="notes.html" class="menu-item"><span class="menu-icon">📝</span>Notes</a>
+      <a href="assignments.html" class="menu-item active"><span class="menu-icon">📄</span>Assignments</a>
+      <a href="saved.html" class="menu-item"><span class="menu-icon">💾</span>Saved</a>
+      <a href="exam.html" class="menu-item"><span class="menu-icon">🧪</span>My Exams</a>
+    </nav>
+    <div class="sidebar-help">
+      <p class="help-title">Need Help?</p>
+      <button class="btn-outline">Chat Support</button>
+    </div>
+    <div class="sidebar-premium">
+      <p class="premium-badge">Upgrade to <span>Premium</span></p>
+      <p class="premium-text">AI grading + plagiarism check</p>
+      <button class="btn-primary full">Go Premium</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <nav class="topnav">
+        <a href="index.html" class="topnav-link">Home</a>
+        <a href="notes.html" class="topnav-link">Notes</a>
+        <a href="subjects.html" class="topnav-link">Subjects</a>
+        <a href="downloads.html" class="topnav-link">Downloads</a>
+        <a href="exam.html" class="topnav-link">Exam</a>
+        <a href="community.html" class="topnav-link">Community</a>
+      </nav>
+      <div class="topbar-right">
+        <div class="search">
+          <input type="text" placeholder="🔍 Search assignments..." id="assignmentSearch" onkeyup="filterAssignments()">
+        </div>
+        <div class="user">
+          <div class="user-avatar">M</div>
+          <div class="user-info">
+            <p class="user-name">Mauli Chakor</p>
+            <p class="user-role">12 Assignments Due</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <section class="col-main full-width">
+        <!-- Assignments Header -->
+        <div class="assignments-header">
+          <div>
+            <h1>📋 Assignments</h1>
+            <div class="urgency-stats">
+              <span class="urgent-count">3 Urgent</span>
+              <span class="due-soon">9 Due Soon</span>
+              <span class="total">24 Total</span>
+            </div>
+          </div>
+          <div class="assignments-controls">
+            <select id="subjectFilter" class="filter-select" onchange="filterAssignments()">
+              <option value="all">All Subjects</option>
+              <option value="physics">Physics</option>
+              <option value="chemistry">Chemistry</option>
+              <option value="maths">Mathematics</option>
+              <option value="cs">Computer Science</option>
+            </select>
+            <select id="statusFilter" class="filter-select" onchange="filterAssignments()">
+              <option value="all">All Status</option>
+              <option value="pending">Pending</option>
+              <option value="submitted">Submitted</option>
+              <option value="graded">Graded</option>
+            </select>
+            <button class="btn-primary" onclick="uploadAssignment()">📤 Submit New</button>
+          </div>
+        </div>
+
+        <!-- Assignment Stats -->
+        <div class="assignment-stats-grid">
+          <div class="stat-card urgent">
+            <div class="stat-icon">⚠️</div>
+            <h3>3</h3>
+            <p>Due Today</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📤</div>
+            <h3>9</h3>
+            <p>Due This Week</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">✅</div>
+            <h3>12</h3>
+            <p>Submitted</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⭐</div>
+            <h3>8.7</h3>
+            <p>Avg Grade</p>
+          </div>
+        </div>
+
+        <!-- Assignments Grid -->
+        <div class="assignments-grid" id="assignmentsGrid">
+          <!-- URGENT Physics Assignment -->
+          <div class="assignment-card urgent physics" data-subject="physics" data-status="pending" data-name="physics-lab">
+            <div class="assignment-urgency">
+              <span class="urgency-badge urgent">Due Today 5PM</span>
+            </div>
+            <div class="assignment-header">
+              <div class="assignment-icon physics">⚗️</div>
+              <h3>Physics Lab Report - Ch 5</h3>
+              <span class="assignment-badge pending">Pending</span>
+            </div>
+            <div class="assignment-details">
+              <div class="detail-row">
+                <span>Due:</span>
+                <span class="detail-value urgent">Feb 25, 5:00 PM</span>
+              </div>
+              <div class="detail-row">
+                <span>Marks:</span>
+                <span class="detail-value">25</span>
+              </div>
+              <div class="detail-row">
+                <span>Professor:</span>
+                <span class="detail-value">Dr. Sharma</span>
+              </div>
+            </div>
+            <div class="assignment-progress">
+              <span>Progress:</span>
+              <div class="progress-bar small">
+                <div class="progress-fill urgent-fill" style="width:40%"></div>
+              </div>
+              <span>40%</span>
+            </div>
+            <div class="assignment-actions">
+              <button class="btn-primary" onclick="openAssignment('Physics Lab')">Open Assignment</button>
+              <button class="btn-outline" onclick="uploadFile('Physics Lab')">Submit</button>
+              <button class="btn-icon" onclick="togglePriority(this)">⭐</button>
+            </div>
+          </div>
+
+          <!-- Data Structures Assignment -->
+          <div class="assignment-card cs submitted" data-subject="cs" data-status="submitted" data-name="datastructures">
+            <div class="assignment-header">
+              <div class="assignment-icon cs">💻</div>
+              <h3>DS - Array Implementation</h3>
+              <span class="assignment-badge submitted">Submitted</span>
+            </div>
+            <div class="assignment-details">
+              <div class="detail-row">
+                <span>Due:</span>
+                <span class="detail-value">Feb 22</span>
+              </div>
+              <div class="detail-row">
+                <span>Submitted:</span>
+                <span class="detail-value green">Feb 21</span>
+              </div>
+              <div class="detail-row">
+                <span>Marks:</span>
+                <span class="detail-value">30</span>
+              </div>
+            </div>
+            <div class="assignment-actions">
+              <button class="btn-outline" onclick="viewFeedback('DS Array')">View Feedback</button>
+              <button class="btn-primary" onclick="downloadFile('DS Array')">Download</button>
+            </div>
+          </div>
+
+          <!-- Mathematics Assignment -->
+          <div class="assignment-card maths graded" data-subject="maths" data-status="graded" data-name="calculus">
+            <div class="assignment-header">
+              <div class="assignment-icon maths">📐</div>
+              <h3>Calculus - Limits Assignment</h3>
+              <span class="assignment-badge graded excellent">A+ (92%)</span>
+            </div>
+            <div class="assignment-details">
+              <div class="detail-row">
+                <span>Grade:</span>
+                <span class="detail-value excellent">23/25</span>
+              </div>
+              <div class="detail-row">
+                <span>Feedback:</span>
+                <span class="detail-value">Excellent work!</span>
+              </div>
+            </div>
+            <div class="assignment-actions">
+              <button class="btn-primary" onclick="viewDetailedFeedback('Calculus')">Detailed Feedback</button>
+              <button class="btn-outline" onclick="shareGrade('Calculus')">Share Grade</button>
+            </div>
+          </div>
+
+          <!-- Chemistry Assignment -->
+          <div class="assignment-card chemistry pending" data-subject="chemistry" data-status="pending" data-name="organic">
+            <div class="assignment-header">
+              <div class="assignment-icon chemistry">🧪</div>
+              <h3>Organic Reactions Mechanism</h3>
+              <span class="assignment-badge pending">Due Tomorrow</span>
+            </div>
+            <div class="assignment-details">
+              <div class="detail-row">
+                <span>Due:</span>
+                <span class="detail-value urgent">Feb 26, 11:59 PM</span>
+              </div>
+              <div class="detail-row">
+                <span>Marks:</span>
+                <span class="detail-value">20</span>
+              </div>
+            </div>
+            <div class="assignment-actions">
+              <button class="btn-primary" onclick="openAssignment('Organic Chemistry')">Start Now</button>
+              <button class="btn-outline" onclick="requestExtension('Organic')">Request Extension</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bulk Actions -->
+        <div class="bulk-actions" id="bulkActions" style="display: none;">
+          <span id="selectedCount">0 selected</span>
+          <button class="btn-primary" onclick="submitBulk()">Submit Selected</button>
+          <button class="btn-outline" onclick="deleteBulk()">Delete</button>

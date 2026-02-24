@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Subjects | ApnaSEM</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">A</div>
+      <span class="logo-text">ApnaSEM</span>
+    </div>
+    <nav class="menu">
+      <a href="index.html" class="menu-item">
+        <span class="menu-icon">🏠</span>Dashboard
+      </a>
+      <a href="courses.html" class="menu-item">
+        <span class="menu-icon">📚</span>My Courses
+      </a>
+      <a href="notes.html" class="menu-item">
+        <span class="menu-icon">📝</span>Notes
+      </a>
+      <a href="assignments.html" class="menu-item">
+        <span class="menu-icon">📄</span>Assignments
+      </a>
+      <a href="saved.html" class="menu-item">
+        <span class="menu-icon">💾</span>Saved
+      </a>
+      <a href="exam.html" class="menu-item">
+        <span class="menu-icon">🧪</span>My Exams
+      </a>
+    </nav>
+    <div class="sidebar-help">
+      <p class="help-title">Need Help?</p>
+      <button class="btn-outline">Chat Support</button>
+    </div>
+    <div class="sidebar-premium">
+      <p class="premium-badge">Upgrade to <span>Premium</span></p>
+      <p class="premium-text">Get full access + offline download</p>
+      <button class="btn-primary full">Go Premium</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <nav class="topnav">
+        <a href="index.html" class="topnav-link">Home</a>
+        <a href="notes.html" class="topnav-link">Notes</a>
+        <a href="subjects.html" class="topnav-link active">Subjects</a>
+        <a href="downloads.html" class="topnav-link">Downloads</a>
+        <a href="exam.html" class="topnav-link">Exam</a>
+        <a href="community.html" class="topnav-link">Community</a>
+      </nav>
+      <div class="topbar-right">
+        <div class="search">
+          <input type="text" placeholder="🔍 Search subjects..." id="subjectsSearch" onkeyup="filterSubjects()">
+        </div>
+        <div class="user">
+          <div class="user-avatar">M</div>
+          <div class="user-info">
+            <p class="user-name">Mauli Chakor</p>
+            <p class="user-role">B.Tech CSE</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <section class="col-main full-width">
+        <!-- Subjects Header -->
+        <div class="subjects-header">
+          <div>
+            <h1>📚 Your Subjects</h1>
+            <p class="subjects-stats">SEM-4 | B.Tech CSE | 5 Subjects Active</p>
+          </div>
+          <div class="subjects-controls">
+            <select id="semFilter" class="filter-select" onchange="filterSubjects()">
+              <option value="all">All Semesters</option>
+              <option value="sem4">Semester 4</option>
+              <option value="sem3">Semester 3</option>
+            </select>
+            <select id="statusFilter" class="filter-select" onchange="filterSubjects()">
+              <option value="all">All Status</option>
+              <option value="active">Active</option>
+              <option value="completed">Completed</option>
+            </select>
+            <button class="btn-primary" onclick="addSubject()">+ Add Subject</button>
+          </div>
+        </div>
+
+        <!-- Subjects Grid -->
+        <div class="subjects-grid" id="subjectsGrid">
+          <!-- Physics -->
+          <div class="subject-card physics" data-sem="sem4" data-status="active" data-name="physics">
+            <div class="subject-icon">🧲</div>
+            <div class="subject-header">
+              <h2>Physics</h2>
+              <span class="subject-badge active">Active</span>
+            </div>
+            <div class="subject-stats">
+              <div class="stat-item">
+                <span class="stat-label">Notes</span>
+                <span class="stat-value">120</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Progress</span>
+                <span class="stat-value">85%</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Avg Score</span>
+                <span class="stat-value">92</span>
+              </div>
+            </div>
+            <div class="subject-progress">
+              <div class="progress-bar">
+                <div class="progress-fill physics-fill" style="width:85%"></div>
+              </div>
+            </div>
+            <div class="subject-actions">
+              <button class="btn-primary small" onclick="openSubject('Physics')">Open Notes</button>
+              <button class="btn-outline small" onclick="viewDetails('Physics')">Details</button>
+              <button class="btn-icon" onclick="toggleFavorite(this)">⭐</button>
+            </div>
+          </div>
+
+          <!-- Chemistry -->
+          <div class="subject-card chemistry" data-sem="sem4" data-status="active" data-name="chemistry">
+            <div class="subject-icon">⚗️</div>
+            <div class="subject-header">
+              <h2>Chemistry</h2>
+              <span class="subject-badge active">Active</span>
+            </div>
+            <div class="subject-stats">
+              <div class="stat-item">
+                <span class="stat-label">Notes</span>
+                <span class="stat-value">95</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Progress</span>
+                <span class="stat-value">60%</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Avg Score</span>
+                <span class="stat-value">78</span>
+              </div>
+            </div>
+            <div class="subject-progress">
+              <div class="progress-bar">
+                <div class="progress-fill chemistry-fill" style="width:60%"></div>
+              </div>
+            </div>
+            <div class="subject-actions">
+              <button class="btn-primary small" onclick="openSubject('Chemistry')">Open Notes</button>
+              <button class="btn-outline small" onclick="viewDetails('Chemistry')">Details</button>
+              <button class="btn-icon" onclick="toggleFavorite(this)">⭐</button>
+            </div>
+          </div>
+
+          <!-- Mathematics -->
+          <div class="subject-card maths" data-sem="sem4" data-status="active" data-name="maths">
+            <div class="subject-icon">📐</div>
+            <div class="subject-header">
+              <h2>Mathematics</h2>
+              <span class="subject-badge popular">Popular</span>
+            </div>
+            <div class="subject-stats">
+              <div class="stat-item">
+                <span class="stat-label">Notes</span>
+                <span class="stat-value">150</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Progress</span>
+                <span class="stat-value">92%</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Avg Score</span>
+                <span class="stat-value">95</span>
+              </div>
+            </div>
+            <div class="subject-progress">
+              <div class="progress-bar">
+                <div class="progress-fill maths-fill" style="width:92%"></div>
+              </div>
+            </div>
+            <div class="subject-actions">
+              <button class="btn-primary small" onclick="openSubject('Mathematics')">Open Notes</button>
+              <button class="btn-outline small" onclick="viewDetails('Mathematics')">Details</button>
+              <button class="btn-icon saved">⭐</button>
+            </div>
+          </div>
+
+          <!-- Computer Science -->
+          <div class="subject-card cs" data-sem="sem4" data-status="active" data-name="cs">
+            <div class="subject-icon">💻</div>
+            <div class="subject-header">
+              <h2>Computer Science</h2>
+              <span class="subject-badge new">New</span>
+            </div>
+            <div class="subject-stats">
+              <div class="stat-item">
+                <span class="stat-label">Notes</span>
+                <span class="stat-value">80</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Progress</span>
+                <span class="stat-value">45%</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Avg Score</span>
+                <span class="stat-value">88</span>
+              </div>
+            </div>
+            <div class="subject-progress">
+              <div class="progress-bar">
+                <div class="progress-fill cs-fill" style="width:45%"></div>
+              </div>
+            </div>
+            <div class="subject-actions">
+              <button class="btn-primary small" onclick="openSubject('Computer Science')">Open Notes</button>
+              <button class="btn-outline small" onclick="viewDetails('Computer Science')">Details</button>
+              <button class="btn-icon" onclick="toggleFavorite(this)">⭐</button>
+            </div>
+          </div>
+
+          <!-- Completed Subject Example -->
+          <div class="subject-card completed" data-sem="sem3" data-status="completed" data-name="electronics">
+            <div class="subject-icon">⚡</div>
+            <div class="subject-header">
+              <h2>Electronics</h2>
+              <span class="subject-badge completed">Completed</span>
+            </div>
+            <div class="subject-stats">
+              <div class="stat-item">
+                <span class="stat-label">Notes</span>
+                <span class="stat-value">110</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Progress</span>
+                <span class="stat-value">100%</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Final Score</span>
+                <span class="stat-value">96</span>
+              </div>
+            </div>
+            <div class="subject-progress">
+              <div class="progress-bar">
+                <div class="progress-fill completed-fill" style="width:100%"></div>
+              </div>
+            </div>
+            <div class="subject-actions">
+              <button class="btn-outline small">View Archive</button>
+              <button class="btn-primary small">Review Notes</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Overview -->
+        <div class="stats-overview">
+          <div class="stat-card">
+            <h3>4</h3>
+            <p>Active Subjects</p>
+          </div>
+          <div class="stat-card">
+            <h3>545</h3>
+            <p>Total Notes</p>
+          </div>
+          <div class="stat-card">
+            <h3>72%</h3>
+            <p>Avg Progress</p>
+          </div>
+          <div class="stat-card">
+            <h3>88</h3>
+            <p>Avg Score</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+<script>
+setActiveNav('subjects');
+</script>
+</body>
+</html>
